@@ -1,36 +1,38 @@
-const Navbar = ()=> {
+import Link from "next/link";
+
+const Navbar = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 px-4 py-6 bg-gradient-to-b from-black/50 to-transparent">
       <nav className="max-w-4xl mx-auto">
         <div className="flex justify-center">
-          <div className="border-2 border-brand-yellow rounded-full px-8 py-2  bg-black/80">
-            <ul className="flex space-x-8 text-brand-yellow">
+          <div className="border-4 border-brand-yellow rounded-full px-12 py-3 bg-black/80">
+            <ul className="flex space-x-14 text-brand-yellow">
               <li>
-                <a href="#home" className="hover:opacity-80 transition-opacity">
+                <Link href="/" className="hover:opacity-80 transition-opacity">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#about" className="hover:opacity-80 transition-opacity">
+                <Link href="/about" className="hover:opacity-80 transition-opacity">
                   About
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#discover" className="hover:opacity-80 transition-opacity">
+                <Link href="#discover" className="hover:opacity-80 transition-opacity">
                   Discover
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#places" className="hover:opacity-80 transition-opacity">
+                <Link href="#places" className="hover:opacity-80 transition-opacity">
                   Places
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
         </div>
       </nav>
     </header>
-  )
-}
+  );
+};
 
 export default Navbar;

@@ -4,8 +4,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@100..900&display=swap');
 body{
-    @apply bg-cover bg-center bg-no-repeat;
-    background-image: url('/images/background.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('/bgimg_1234.png');
 }
 
 html {
@@ -44,4 +46,7 @@ html {
   
       --radius: 0.5rem;
     }
+
   }
+
+  

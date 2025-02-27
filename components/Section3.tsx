@@ -1,42 +1,48 @@
-import Image from "next/image";
+"use client"
 
-const Section3 = () => {
-  return (
-    <div className=" h-screen pt-6 flex flex-col items-center">
-      <h1 className="w-full text-[#ffffff] text-center font-montserrat text-4xl font-bold">Influencer Categories</h1>
-      <div className="mt-6 grid grid-cols-4 place-items-center h-4/5 w-2/3">
-        <div className="w-full h-full text-center flex flex-col items-center">
-          {/* Image Box */}
-          <div className="relative w-2/3 h-80 mb-3 border-4 border-white">
-            <Image src="/images/img1.png" alt="Travel Influencers" fill className="object-cover" />
+import { Users, Globe2, NotebookIcon as Lotus, Smartphone, MapPin } from "lucide-react"
+
+export default function Section3() {
+    return (
+        <section
+      id="home"
+      className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
+   //   style={{ backgroundImage: "url('/bgimg_section3.png')" }} // Replace with your image
+    >
+
+            {/* Main content */}
+            <div className="relative z-10 container mx-auto px-4 pt-20 pb-32">
+                <h1 className="text-center text-black text-5xl md:text-6xl font-bold mb-24">Why Choose Tourcrow?</h1>
+
+                {/* Features grid */}
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
+                    <Feature iconSrc="/community.svg" title="Community Focused" />
+                    <Feature iconSrc="/globe.svg" title="Discover Hidden Gems" />
+                    <Feature iconSrc="/yoga.svg" title="Stress-Free Travel" />
+                    <Feature iconSrc="/mobile.svg" title="Meet Your Favourite Influencer" />
+                    <Feature iconSrc="/location.svg" title="Local Experience" />
+                </div>
+            </div>
+        </section>
+    )
+}
+
+interface FeatureProps {
+    iconSrc: string;
+    title: string;
+}
+
+
+function Feature({ iconSrc, title }: { iconSrc: string; title: string }) {
+    return (
+      <div className="flex flex-col items-center text-center group">
+        <div className="relative mb-6 w-40 h-40">
+          <div className="w-full h-full rounded-full border-4 border-[#000000] flex items-center justify-center group-hover:bg-[#F9DF83]/80 transition-colors">
+            <img src={iconSrc} alt={title} className="w-28 h-28" />
           </div>
-          <h2 className="text-[#ffffff] font-semibold font-montserrat text-xl">Travel</h2>
-          <h2 className="text-[#ffffff] font-semibold font-montserrat text-xl">Influencers</h2>
         </div>
-        <div className="w-full h-full text-center flex flex-col items-center justify-end">
-          <h2 className="text-[#ffffff] font-semibold font-montserrat text-xl">Tech</h2>
-          <h2 className="text-[#ffffff] font-semibold font-montserrat text-xl">Influencers</h2>
-          <div className="relative w-2/3 h-80 mt-3 border-4 border-white">
-            <Image src="/images/img2.png" alt="Tech Influencers" fill className="object-cover" />
-          </div>
-        </div>
-        <div className="w-full h-full text-center flex flex-col items-center">
-          <div className="relative w-2/3 h-80 mb-3 border-4 border-white">
-            <Image src="/images/img3.png" alt="Fitness Influencers" fill className="object-cover" />
-          </div>
-          <h2 className="text-[#ffffff] font-semibold font-montserrat text-xl">Fitness</h2>
-          <h2 className="text-[#ffffff] font-semibold font-montserrat text-xl">Influencers</h2>
-        </div>
-        <div className="w-full h-full text-center flex flex-col items-center justify-end">
-          <h2 className="text-[#ffffff] font-semibold font-montserrat text-xl">Fashion</h2>
-          <h2 className="text-[#ffffff] font-semibold font-montserrat text-xl">Influencers</h2>
-          <div className="relative w-2/3 h-80 mt-3 border-4 border-white">
-            <Image src="/images/img4.jpeg" alt="Fashion Influencers" fill className="object-cover" />
-          </div>
-        </div>
+        <h3 className="text-black font-bold text-lg md:text-xl">{title}</h3>
       </div>
-    </div>
-  );
-};
-
-export default Section3;
+    );
+  }
+  

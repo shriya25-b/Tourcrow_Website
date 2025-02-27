@@ -1,43 +1,106 @@
-"use client"
-
-import { Users, Globe2, NotebookIcon as Lotus, Smartphone, MapPin } from "lucide-react"
+import Image from "next/image";
 
 export default function Section2() {
-    return (
-        <section className="relative min-h-screen w-full overflow-hidden">
-
-            {/* Main content */}
-            <div className="relative z-10 container mx-auto px-4 pt-20 pb-32">
-                <h1 className="text-center text-white text-5xl md:text-6xl font-bold mb-24">Why Choose Tourcrow?</h1>
-
-                {/* Features grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
-                    <Feature iconSrc="/users.svg" title="Community Focused" />
-                    <Feature iconSrc="/globe.svg" title="Discover Hidden Gems" />
-                    <Feature iconSrc="/yoga.svg" title="Stress-Free Travel" />
-                    <Feature iconSrc="/mobile.svg" title="Meet Your Favourite Influencer" />
-                    <Feature iconSrc="/location.svg" title="Local Experience" />
-                </div>
+  return (
+    <section
+      className="relative w-full overflow-hidden py-16 md:py-24"
+    >
+      <div className="container mx-auto px-4 md:px-6">
+        {/* Section Title */}
+      
+        
+        {/* Row 1: Text on Left, Illustration on Right */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+          {/* Left Column: Text */}
+          <div className="space-y-6 text-left">
+            <h3 className="text-2xl font-bold text-[#ffcd13]">
+            Why Travelers Love Us
+            </h3>
+            <div className="space-y-4">
+              <p className="text-lg font-medium text-black">
+              Hassle-free trips | Exclusive experiences | Meet your favorite influencers</p>
             </div>
-        </section>
-    )
-}
-
-interface FeatureProps {
-    iconSrc: string;
-    title: string;
-}
-
-
-function Feature({ iconSrc, title }: { iconSrc: string; title: string }) {
-    return (
-        <div className="flex flex-col items-center text-center group">
-            <div className="relative mb-6 w-24 h-24">
-                <div className="w-full h-full rounded-full border-2 border-[#fec90f] flex items-center justify-center bg-[#231f20]/50 group-hover:bg-[#231f20]/80 transition-colors">
-                    <img src={iconSrc} alt={title} className="w-12 h-12" />
-                </div>
+          </div>
+          {/* Right Column: Illustration */}
+          <div className="flex justify-center md:justify-end">
+            <div className="relative">
+              <Image
+                src="/section2_illustration1.svg"
+                alt="Traveler with luggage"
+                width={400}
+                height={400}
+                className="object-contain mt-40 max-h-96"
+              />
             </div>
-            <h3 className="text-white font-bold text-lg md:text-xl">{title}</h3>
+          </div>
         </div>
-    );
+        
+        {/* Row 2: Illustration on Left, Text on Right */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+          {/* Left Column: Illustration */}
+          <div className="flex justify-center md:justify-start order-2 md:order-1">
+            <div className="relative">
+              <Image
+                src="/section2_illustration2.svg"
+                alt="Excited traveler with luggage"
+                width={400}
+                height={400}
+                className="object-contain"
+              />
+            </div>
+          </div>
+          {/* Right Column: Text */}
+          <div className="space-y-6 text-left order-1 md:order-2">
+            <h3 className="text-2xl font-bold text-[#ffcd13]">
+              Travel Beyond Screens!
+            </h3>
+            <div className="space-y-4">
+              <p className="text-lg font-medium text-black">
+                A travel platform that bridges the gap between influencers and their audience through exclusive experiential trips.
+              </p>
+              <p className="text-lg font-medium text-black">
+                Once in a lifetime opportunity to bond with your favorite influencers, beyond the screen.
+              </p>
+              <p className="text-lg font-medium text-black">
+                Premium and well-organized travel experiences with safety and comfort ensured.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        {/* Row 3: Text on Left, Illustration on Right */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          {/* Left Column: Text */}
+          <div className="space-y-6 text-left">
+            <h3 className="text-2xl font-bold text-[#ffcd13]">
+            What’s in it for Customers?
+            </h3>
+            <div className="space-y-4">
+              <p className="text-lg font-medium text-black">
+                Curated itineraries designed with your favorite influencers to create authentic and memorable experiences.
+              </p>
+              <p className="text-lg font-medium text-black">
+                Exclusive access to unique locations and activities that aren't available to regular tourists.
+              </p>
+              <p className="text-lg font-medium text-black">
+                Professional photography and content creation opportunities throughout your journey.
+              </p>
+            </div>
+          </div>
+          {/* Right Column: Illustration */}
+          <div className="flex justify-center md:justify-end">
+            <div className="relative">
+              <Image
+                src="/section2_illustration3.svg"
+                alt="Traveler with backpack and suitcase"
+                width={400}
+                height={400}
+                className="object-contain"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
