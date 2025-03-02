@@ -94,11 +94,11 @@ export default function Section5() {
         </button>
 
         {/* Decorative Footer */}
-        <div className="absolute bottom-0 left-0 right-0">
+        {/* <div className="absolute bottom-0 left-0 right-0">
           <div className="w-full">
            <path d="M0,0 L1200,0 L1200,120 L0,120 Z" className="fill-black opacity-10" />
            </div>
-        </div>
+        </div> */}
       </div>
       
      <div className="absolute bottom-0 left-0 right-0 opacity-90">

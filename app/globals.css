@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@100..900&display=swap');
 body{
     background-size: cover;
     background-position: center;

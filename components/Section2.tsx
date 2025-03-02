@@ -5,24 +5,28 @@ export default function Section2() {
     <section
       className="relative w-full overflow-hidden py-16 md:py-24"
     >
-      <div className="container mx-auto px-4 md:px-6">
+      <div className="container mx-auto px-4 md:px-28">
         {/* Section Title */}
       
         
         {/* Row 1: Text on Left, Illustration on Right */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+        <div className="flex flex-col md:flex-row items-center mb-16 gap-64">
           {/* Left Column: Text */}
-          <div className="space-y-6 text-left">
-            <h3 className="text-2xl font-bold text-[#ffcd13]">
-            Why Travelers Love Us
+          <div className="space-y-6">
+            <h3 className="text-5xl font-bold text-[#ffcd13]">
+              Why Travelers Love Us
             </h3>
-            <div className="space-y-4">
-              <p className="text-lg font-medium text-black">
-              Hassle-free trips | Exclusive experiences | Meet your favorite influencers</p>
+            <div className="space-y-2">
+              <p className="pl-4 text-2xl font-semibold text-black">
+                Hassle-free trips | Exclusive experiences |
+              </p>
+              <p className="pl-4 text-2xl font-semibold text-black">
+                Meet your favorite influencers
+              </p>
             </div>
           </div>
           {/* Right Column: Illustration */}
-          <div className="flex justify-center md:justify-end">
+          <div className="flex justify-center md:justify-center">
             <div className="relative">
               <Image
                 src="/section2_illustration1.svg"
@@ -36,9 +40,9 @@ export default function Section2() {
         </div>
         
         {/* Row 2: Illustration on Left, Text on Right */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+        <div className="flex flex-col md:flex-row items-center mb-16 gap-64">
           {/* Left Column: Illustration */}
-          <div className="flex justify-center md:justify-start order-2 md:order-1">
+          <div className="flex justify-center md:justify-center order-2 md:order-1">
             <div className="relative">
               <Image
                 src="/section2_illustration2.svg"
@@ -50,40 +54,46 @@ export default function Section2() {
             </div>
           </div>
           {/* Right Column: Text */}
-          <div className="space-y-6 text-left order-1 md:order-2">
-            <h3 className="text-2xl font-bold text-[#ffcd13]">
+          <div className="space-y-6 flex flex-col order-1 md:order-2">
+            <h3 className="text-5xl font-bold text-[#ffcd13]">
               Travel Beyond Screens!
             </h3>
-            <div className="space-y-4">
-              <p className="text-lg font-medium text-black">
-                A travel platform that bridges the gap between influencers and their audience through exclusive experiential trips.
+            <div className="space-y-2">
+              <p className="pl-4 text-2xl text-right font-semibold text-black">
+                A travel platform that bridges the gap between
               </p>
-              <p className="text-lg font-medium text-black">
-                Once in a lifetime opportunity to bond with your favorite influencers, beyond the screen.
+              <p className="pl-4 text-2xl text-right font-semibold text-black">
+                influencers and their audience through
               </p>
-              <p className="text-lg font-medium text-black">
-                Premium and well-organized travel experiences with safety and comfort ensured.
+              <p className="pl-4 text-2xl text-right font-semibold text-black">
+                exclusive experiential trips.
               </p>
             </div>
           </div>
         </div>
         
         {/* Row 3: Text on Left, Illustration on Right */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div className="flex flex-col md:flex-row items-center gap-12">
           {/* Left Column: Text */}
-          <div className="space-y-6 text-left">
-            <h3 className="text-2xl font-bold text-[#ffcd13]">
+          <div className="space-y-6">
+            <h3 className="text-5xl font-bold text-[#ffcd13]">
             What’s in it for Customers?
             </h3>
-            <div className="space-y-4">
-              <p className="text-lg font-medium text-black">
-                Curated itineraries designed with your favorite influencers to create authentic and memorable experiences.
+            <div className="space-y-2">
+              <p className="pl-4 text-2xl font-semibold text-black">
+                Travel with your favourite influencer and get to experience their world.
               </p>
-              <p className="text-lg font-medium text-black">
-                Exclusive access to unique locations and activities that aren't available to regular tourists.
+              <p className="pl-4 text-2xl font-semibold text-black">
+                Meet like-minded people from the same fan community.
               </p>
-              <p className="text-lg font-medium text-black">
-                Professional photography and content creation opportunities throughout your journey.
+              <p className="pl-4 text-2xl font-semibold text-black">
+                Get an opportunity to witness behind the scenes of content creation which will give insights to aspiring content creators.
+              </p>
+              <p className="pl-4 text-2xl font-semibold text-black">
+                Once in a life time opportunity to bond with your favorite influencers, beyond the screen.
+              </p>
+              <p className="pl-4 text-2xl font-semibold text-black">
+                Premium and well-organized travel experiences with safety and comfort ensured.
               </p>
             </div>
           </div>
