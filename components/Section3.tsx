@@ -6,7 +6,7 @@ export default function Section3() {
     return (
         <section
       id="home"
-      className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
+      className=" shared-bg min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
    //   style={{ backgroundImage: "url('/bgimg_section3.png')" }} // Replace with your image
     >
 
@@ -37,7 +37,7 @@ function Feature({ iconSrc, title }: { iconSrc: string; title: string }) {
     return (
       <div className="flex flex-col items-center text-center group">
         <div className="relative mb-6 w-40 h-40">
-          <div className="w-full h-full rounded-full border-4 border-[#000000] flex items-center justify-center group-hover:bg-[#F9DF83]/80 transition-colors">
+          <div className="bg-black w-full h-full rounded-full border-4 border-[#000000] flex items-center justify-center group-hover:bg-[#F9DF83]/80 transition-colors">
             <img src={iconSrc} alt={title} className="w-28 h-28" />
           </div>
         </div>

@@ -1,116 +1,154 @@
-import Image from "next/image"
-import Link from "next/link"
 
-export default function Section5() {
+"use client";
+
+import { useRef, useEffect, useState } from "react";
+import { motion, useAnimationControls } from "framer-motion";
+
+const tickerData = [
+  {
+    image: "/destination1.jpg",
+    text: "Himachal Pradesh",
+    subText: "Through the land of Snow",
+  },
+  {
+    image: "/destination2.jpg",
+    text: "Ladakh",
+    subText: "The Moon Land",
+  },
+  {
+    image: "/destination3.jpg",
+    text: "Uttarpradesh",
+    subText: "Through the land of Snow",
+  },
+];
+
+export default function Section5({ speed = 50, direction = "left" }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const controls = useAnimationControls();
+  const [containerWidth, setContainerWidth] = useState(0);
+  const [contentWidth, setContentWidth] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const calculateDuration = () => {
+    if (contentWidth === 0) return 20;
+    return contentWidth / speed;
+  };
+
+  useEffect(() => {
+    if (containerRef.current) setContainerWidth(containerRef.current.offsetWidth);
+    if (contentRef.current) setContentWidth(contentRef.current.scrollWidth);
+  }, [tickerData]);
+
+  useEffect(() => {
+    if (contentWidth === 0 || containerWidth === 0 || isDragging || isPaused) return;
+
+    const duration = calculateDuration();
+    const distance = direction === "left" ? -contentWidth : contentWidth;
+
+    controls.start({
+      x: distance,
+      transition: {
+        duration,
+        ease: "linear",
+        repeat: Infinity,
+        repeatType: "loop",
+      },
+    });
+
+    return () => controls.stop();
+  }, [contentWidth, containerWidth, speed, direction, isDragging, isPaused, controls]);
+
   return (
-    <main className="h-72 text-black relative">
+    <section
+      className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat relative"
+      style={{ backgroundImage: "url('/bg5.png')" }}
+    >
 
-      <div className=" bg-[#FEC90F] opacity-80 absolute inset-0 z-0"></div>
-
-      {/* Content */}
-      <div className="relative z-10">
-        <nav className="container mx-auto px-4 py-6 flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center ml-[-60px]">
-        <Image src="/Logo.svg" alt="Logo" width={150} height={150} />
-    </div>
-
-          {/* Navigation */}
-          <div className="hidden md:flex space-x-52 text-lg">
-            <div className="space-y-2">
-              <h2 className="font-semibold">Travel</h2>
-              <p className="text-sm text-black max-w-[200px]">
-                You choose the Destination, We offer you the Experience.
-              </p>
-            </div>
-            <div className="space-y-2">
-              <h2 className="font-semibold">About</h2>
-              <ul className="space-y-1 text-sm text-black">
-                <li>
-                  <Link href="#" className="hover:text-[#fec90f]">
-                    About Us
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-[#fec90f]">
-                    Features
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-[#fec90f]">
-                    New & Blow
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div className="space-y-2">
-              <h2 className="font-semibold">Company</h2>
-              <ul className="space-y-1 text-sm text-black">
-                <li>
-                  <Link href="#" className="hover:text-[#fec90f]">
-                    Team
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-[#fec90f]">
-                    Plan & Pricing
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-[#fec90f]">
-                    Become a member
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div className="space-y-2">
-              <h2 className="font-semibold">Support</h2>
-              <ul className="space-y-1 text-sm text-black">
-                <li>
-                  <Link href="#" className="hover:text-[#fec90f]">
-                    FAQs
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-[#fec90f]">
-                    Support Center
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-[#fec90f]">
-                    Contact Us
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-
-        {/* Mobile Menu Button */}
-        <button className="md:hidden fixed top-6 right-4 z-50">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-
-        {/* Decorative Footer */}
-        {/* <div className="absolute bottom-0 left-0 right-0">
-          <div className="w-full">
-           <path d="M0,0 L1200,0 L1200,120 L0,120 Z" className="fill-black opacity-10" />
-           </div>
-        </div> */}
+      {/* Heading */}
+      <div className="absolute top-5 left-0 w-full">
+        <h1 className="text-center text-black text-5xl md:text-6xl font-bold mb-24">
+          Destination For Every Bucketlist
+        </h1>
       </div>
-      
-     <div className="absolute bottom-0 left-0 right-0 opacity-90">
-          <Image
-            src="/Indiastencil.svg" // Make sure this is inside /public folder
-            alt="India Stencil"
-            width={1920} // Full width
-            height={100} // Set default height
-            className="w-full h-[50px] md:h-[100px] object-cover"
-          />
-        </div>
 
-    </main>
-  )
+
+       {/* Left Div with SVG Map */}
+       <div className="w-[500px] h-[500px] ml-36 flex items-center justify-center">
+        <img 
+          src="/map.svg" 
+          alt="India Map" 
+          className="w-full h-full object-contain"
+        />
+      </div>
+
+
+      <div
+        ref={containerRef}
+        className="relative overflow-hidden w-2/5 bg-opacity-40 ml-auto mr-10"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+
+        {/* Left Blur Effect */}
+        <div className="pointer-events-none absolute top-0 left-0 w-20 h-full z-10 bg-gradient-to-r from-amber-100 via-transparent to-transparent" />
+
+        {/* Right Blur Effect */}
+        <div className="pointer-events-none absolute top-0 right-0 w-20 h-full z-10 bg-gradient-to-l from-amber-100 via-transparent to-transparent" />
+        {/* Scorlling content*/}
+        <motion.div
+          ref={contentRef}
+          className="inline-flex items-center whitespace-nowrap py-3"
+          initial={{ x: direction === "" ? 0 : -contentWidth }}
+          animate={controls}
+          drag="x"
+          dragConstraints={{ left: -contentWidth, right: containerWidth }}
+          onDragStart={() => setIsDragging(true)}
+          onDragEnd={() => setIsDragging(false)}
+          dragElastic={0.1}
+        >
+          {/* Original slides */}
+          {tickerData.map((item, index) => (
+            <div
+              key={index}
+              className="relative w-[300px] h-[250px] rounded-xl overflow-hidden mx-3 shadow-lg"
+            >
+              <img
+                src={item.image}
+                alt={item.text}
+                className="w-full h-full object-cover"
+              />
+              {/* Overlay and Bottom Left Aligned Text */}
+              <div className="absolute left-0 bottom-0 w-full p-3">
+                <h3 className="text-white text-lg font-semibold">{item.text}</h3>
+                <p className="text-white text-sm  mt-1">
+                  {item.subText}</p>
+              </div>
+            </div>
+          ))}
+
+          {/* Duplicate slides for seamless looping */}
+          {tickerData.map((item, index) => (
+            <div
+              key={`dup-${index}`}
+              className="relative w-[300px] h-[250px] rounded-xl overflow-hidden mx-3 shadow-lg"
+            >
+              <img
+                src={item.image}
+                alt={item.text}
+                className="w-full h-full object-cover"
+              />
+              {/* Overlay and Bottom Left Aligned Text */}
+              <div className="absolute left-0 bottom-0 w-full p-3">
+                <h3 className="text-white text-lg font-semibold">{item.text}</h3>
+                <p className="text-white text-sm  mt-1">
+                  {item.subText}</p>
+              </div>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
 }

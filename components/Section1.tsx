@@ -6,7 +6,7 @@ export default function Section1() {
     <section
       id="home"
       className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
-      // style={{ backgroundImage: "url('/bgimg_section1.png')" }} // Replace with your image
+      style={{ backgroundImage: "url('/bg1.png')" }} // Replace with your image
     >
       <div className="relative z-10 max-w-4xl text-center space-y-12">
         

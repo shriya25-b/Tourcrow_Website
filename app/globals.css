@@ -6,7 +6,13 @@ body{
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: url('/bgimg_1234.png');
+   
+}
+
+.shared-bg {
+  background-image: url('/bg3.png');
+  background-size: cover;
+  background-position: center;
 }
 
 html {
