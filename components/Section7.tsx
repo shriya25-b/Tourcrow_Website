@@ -3,7 +3,7 @@ import Link from "next/link"
 
 export default function Section7() {
   return (
-    <main className="h-72 text-white relative">
+    <main className="h-64 text-white relative">
       <div className=" bg-black absolute inset-0 z-0"></div>
 
       {/* Content */}

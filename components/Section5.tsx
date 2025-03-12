@@ -149,7 +149,7 @@ export default function Section5({ speed = 50, direction = "left" }) {
           ))}
         </motion.div>
       </div>
-      <div className="absolute bottom-0 left-0 right-0">
+      {/* <div className="absolute bottom-0 left-0 right-0">
         <Image
           src="/indiastencil.svg" // Make sure this is inside /public folder
           alt="India Stencil"
@@ -158,7 +158,7 @@ export default function Section5({ speed = 50, direction = "left" }) {
           className="w-full h-[50px] md:h-[100px] object-cover"
         />
       </div>
-      <div className="absolute bottom-0 left-0 right-0 w-full bg-black h-1"></div>
+      <div className="absolute bottom-0 left-0 right-0 w-full bg-black h-1"></div> */}
     </section>
   );
 }
