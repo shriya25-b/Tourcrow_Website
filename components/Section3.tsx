@@ -6,7 +6,7 @@ export default function Section3() {
     return (
         <section
       id="home"
-      className=" shared-bg min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
+      className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
    //   style={{ backgroundImage: "url('/bgimg_section3.png')" }} // Replace with your image
     >
 

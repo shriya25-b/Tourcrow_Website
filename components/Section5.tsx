@@ -1,6 +1,6 @@
 
 "use client";
-
+import Image from "next/image"
 import { useRef, useEffect, useState } from "react";
 import { motion, useAnimationControls } from "framer-motion";
 
@@ -74,11 +74,11 @@ export default function Section5({ speed = 50, direction = "left" }) {
       </div>
 
 
-       {/* Left Div with SVG Map */}
-       <div className="w-[500px] h-[500px] ml-36 flex items-center justify-center">
-        <img 
-          src="/map.svg" 
-          alt="India Map" 
+      {/* Left Div with SVG Map */}
+      <div className="w-[500px] h-[500px] ml-36 flex items-center justify-center">
+        <img
+          src="/map.svg"
+          alt="India Map"
           className="w-full h-full object-contain"
         />
       </div>
@@ -149,6 +149,16 @@ export default function Section5({ speed = 50, direction = "left" }) {
           ))}
         </motion.div>
       </div>
+      <div className="absolute bottom-0 left-0 right-0">
+        <Image
+          src="/indiastencil.svg" // Make sure this is inside /public folder
+          alt="India Stencil"
+          width={1920} // Full width
+          height={100} // Set default height
+          className="w-full h-[50px] md:h-[100px] object-cover"
+        />
+      </div>
+      <div className="absolute bottom-0 left-0 right-0 w-full bg-black h-1"></div>
     </section>
   );
 }

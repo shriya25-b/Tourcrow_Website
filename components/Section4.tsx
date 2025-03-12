@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Section4 = () => {
   return (
-    <div className=" shared-bg h-screen pt-6 flex flex-col items-center">
+    <div className=" h-screen pt-6 flex flex-col items-center">
 
       <h1 className="text-center text-black text-5xl md:text-6xl font-bold mb-0">Influencer Categories</h1>
       <div className="mt-6 grid grid-cols-4 place-items-center h-4/5 w-2/3">
