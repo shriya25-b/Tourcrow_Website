@@ -17,10 +17,12 @@ export default function Page() {
       <Navbar />
       <Section1 />
       <Section2 />
-      <Section3/>
-      <Section4 />
+      <div className="shared-bg">
+        <Section3 />
+        <Section4 />
+      </div>
       {/* <Section3 /> */}
-      <Section5/>
+      <Section5 />
       <Section7 />
     </main>
   )

@@ -1,4 +1,7 @@
 
+"use client";
+import Image from "next/image"
+import { useRef, useEffect, useState } from "react";
 // "use client";
 
 // import * as d3 from "d3";
@@ -391,6 +394,15 @@ function App() {
         </h1>
       </div>
 
+
+      {/* Left Div with SVG Map */}
+      <div className="w-[500px] h-[500px] ml-36 flex items-center justify-center">
+        <img
+          src="/map.svg"
+          alt="India Map"
+          className="w-full h-full object-contain"
+        />
+      </div>
       {/* Content Container */}
       <div className="flex w-full max-w-7xl mx-auto px-0">
         {/* Map Section */}
@@ -472,6 +484,16 @@ function App() {
           </motion.div>
         </div>
       </div>
+      <div className="absolute bottom-0 left-0 right-0">
+        <Image
+          src="/indiastencil.svg" // Make sure this is inside /public folder
+          alt="India Stencil"
+          width={1920} // Full width
+          height={100} // Set default height
+          className="w-full h-[50px] md:h-[100px] object-cover"
+        />
+      </div>
+      <div className="absolute bottom-0 left-0 right-0 w-full bg-black h-1"></div>
     </section>
   );
 }
