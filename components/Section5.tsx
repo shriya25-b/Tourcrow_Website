@@ -21,7 +21,7 @@ const tickerData = [
   },
 ];
 
-function App() {
+const Section5 = () => {
   const mapRef = useRef<SVGSVGElement>(null);
   const [tooltipData, setTooltipData] = useState({ show: false, text: "", x: 0, y: 0 });
 
@@ -66,134 +66,118 @@ function App() {
     return () => controls.stop();
   }, [contentWidth, containerWidth, speed, direction, isDragging, isPaused, controls]);
 
+  // Interactive India Map
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("/full_data-1.json");
-        if (!response.ok) throw new Error("Failed to fetch map data");
-        const data = await response.json();
-        drawMap(data);
-      } catch (error) {
-        console.error("Error loading map data:", error);
-      }
+    if (!mapRef.current) return;
+
+    d3.select(mapRef.current).selectAll("*").remove();
+
+    const svg = d3.select(mapRef.current);
+    const g = svg.append("g");
+
+    const tooltip = d3
+      .select("body")
+      .append("div")
+      .style("position", "absolute")
+      .style("background", "rgba(0, 0, 0, 0.7)")
+      .style("color", "#fff")
+      .style("padding", "5px 10px")
+      .style("border-radius", "4px")
+      .style("font-size", "12px")
+      .style("pointer-events", "none")
+      .style("opacity", 0);
+
+    const stateData: Record<string, string> = {
+      "IN-JK": "Jammu & Kashmir - Population: 13M",
+      "IN-UP": "Uttar Pradesh - Population: 199M",
+      "IN-HP": "Himachal Pradesh - Population: 7.5M",
+      "IN-UT": "Uttarakhand - Population: 10M"
     };
 
-    const drawMap = (geoData: any) => {
-      const width = 600;
-      const height = 800;
+    fetch("/india.svg")
+      .then((response) => response.text())
+      .then((data) => {
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(data, "image/svg+xml");
+        const mapElement = xmlDoc.documentElement;
 
-      const projection = d3.geoMercator().fitSize([width, height], geoData);
-      const path = d3.geoPath().projection(projection);
+        g.node()?.appendChild(mapElement);
 
-      const svg = d3
-        .select(mapRef.current)
-        .attr("width", width)
-        .attr("height", height);
-      svg.selectAll("*").remove();
+        const path = d3.geoPath();
 
-      svg
-        .selectAll("path")
-        .data(geoData.features)
-        .enter()
-        .append("path")
-        .attr("d", path as any)
-        .attr("fill", "#fec90f")
-        .attr("stroke", "#000")
-        .attr("stroke-width", 0.5)
-        .on("mouseover", function (event, d: any) {
-          const [x, y] = d3.pointer(event, document.body);
-          setTooltipData({
-            show: true,
-            text: d.id === "Jammu & Kasmir" ? "Jammu & Kashmir" : d.id,
-            x: x + 10,
-            y: y + 10,
+        g.selectAll<SVGPathElement, unknown>("path")
+          .attr("fill", "#fec90f")
+          .attr("stroke", "#ffffff")
+          .attr("stroke-width", 1)
+          .each(function (_, i) {
+            const stateId = d3.select(this).attr("id") || `State-${i + 1}`;
+            const stateInfo = stateData[stateId];
+
+            if (stateInfo) {
+              const centroid = getCentroid(this);
+              if (centroid) {
+                const marker = g.append("circle")
+                  .attr("cx", centroid[0])
+                  .attr("cy", centroid[1])
+                  .attr("r", 4)
+                  .attr("fill", "#ff0000")
+                  .attr("stroke", "#ffffff")
+                  .attr("stroke-width", 1)
+                  .attr("class", `marker-${stateId}`);
+
+                const label = g.append("text")
+                  .attr("x", centroid[0])
+                  .attr("y", centroid[1] - 10)
+                  .attr("text-anchor", "middle")
+                  .attr("font-size", "12px")
+                  .attr("font-weight", "bold")
+                  .attr("fill", "#000000")
+                  .attr("stroke", "#000000")
+                  .attr("stroke-width", 0.3)
+                  .text(stateInfo.split(" - ")[0])
+                  .attr("class", `label-${stateId}`);
+
+                d3.select(this)
+                  .on("mouseover", (event) => {
+                    marker.transition().duration(200).attr("r", 8);
+                    label.transition().duration(200).attr("font-size", "16px").attr("font-weight", "bold");
+
+                    d3.select(this)
+                      .transition()
+                      .duration(200)
+                      .attr("fill", "#FEE99F");
+                  })
+                  .on("mousemove", (event) => {
+                    tooltip
+                      .style("left", `${event.pageX + 10}px`)
+                      .style("top", `${event.pageY - 10}px`);
+                  })
+                  .on("mouseout", () => {
+                    tooltip.style("opacity", 0);
+
+                    marker.transition().duration(200).attr("r", 4);
+                    label.transition().duration(200).attr("font-size", "12px").attr("font-weight", "bold");
+
+                    d3.select(this)
+                      .transition()
+                      .duration(200)
+                      .attr("fill", "#fec90f");
+                  });
+              }
+            }
           });
-          d3.select(this).attr("fill", "#ffdd57");
-        })
-        .on("mousemove", (event) => {
-          const [x, y] = d3.pointer(event, document.body);
-          setTooltipData((prev) => ({ ...prev, x: x + 10, y: y + 10 }));
-        })
-        .on("mouseout", function () {
-          setTooltipData({ show: false, text: "", x: 0, y: 0 });
-          d3.select(this).attr("fill", "#fec90f");
-        });
+      })
+      .catch((error) => console.error("Error loading SVG:", error));
 
-      const targetStates = ["Jammu & Kasmir", "Himachal Pradesh", "Uttaranchal"];
-
-      geoData.features
-        .filter((d: any) => targetStates.includes(d.id))
-        .forEach((d: any) => {
-          const centroid = path.centroid(d);
-          if (centroid.some(isNaN)) return;
-
-          const marker = svg
-            .append("circle")
-            .attr("cx", centroid[0])
-            .attr("cy", centroid[1])
-            .attr("r", 4)
-            .attr("fill", "red");
-
-          const label = svg
-            .append("text")
-            .attr("x", centroid[0] + 5)
-            .attr("y", centroid[1] - 5)
-            .text(d.id === "Jammu & Kasmir" ? "Jammu & Kashmir" : d.id)
-            .attr("font-size", "12px")
-            .attr("fill", "black")
-            .attr("font-weight", "bold");
-
-          marker
-            .on("mouseover", function () {
-              d3.select(this)
-                .transition()
-                .duration(150)
-                .attr("r", 8);
-              label
-                .transition()
-                .duration(150)
-                .attr("font-size", "16px");
-            })
-            .on("mouseout", function () {
-              d3.select(this)
-                .transition()
-                .duration(150)
-                .attr("r", 4);
-              label
-                .transition()
-                .duration(150)
-                .attr("font-size", "12px");
-            });
-
-          label
-            .on("mouseover", function () {
-              d3.select(this)
-                .transition()
-                .duration(150)
-                .attr("font-size", "16px");
-              marker
-                .transition()
-                .duration(150)
-                .attr("r", 8);
-            })
-            .on("mouseout", function () {
-              d3.select(this)
-                .transition()
-                .duration(150)
-                .attr("font-size", "12px");
-              marker
-                .transition()
-                .duration(150)
-                .attr("r", 4);
-            });
-        });
-    };
-
-    fetchData();
-
-    return () => {
-      d3.select(mapRef.current).selectAll("*").remove();
-    };
+    function getCentroid(pathNode: SVGPathElement): [number, number] | null {
+      try {
+        const bbox = pathNode.getBBox();
+        return [bbox.x + bbox.width / 2, bbox.y + bbox.height / 2];
+      } catch (e) {
+        console.error("Error calculating centroid:", e);
+        return null;
+      }
+    }
   }, []);
 
   return (
@@ -209,11 +193,11 @@ function App() {
       </div>
 
       {/* Content Container */}
-      <div className="flex w-full max-w-7xl mx-auto px-0">
+      <div className="flex w-full max-w-7xl mx-auto px-0 grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Map Section */}
-        <div className="w-1/2 relative">
-          <div className="rounded-xl p-5">
-            <svg ref={mapRef} className="w-full h-auto -ml-10"></svg>
+        <div className="relative">
+          <div className="rounded-xl p-3 overflow-hidden h-full">
+            <svg ref={mapRef} className="w-full h-[700px] object-contain"></svg>
             {tooltipData.show && (
               <div
                 className="absolute z-50 bg-white px-3 py-2 rounded-md shadow-md border border-gray-200 pointer-events-none"
@@ -231,15 +215,13 @@ function App() {
         {/* Ticker Section */}
         <div
           ref={containerRef}
-          className="w-1/2 h-72 relative overflow-hidden rounded-xl mt-56"
+          className="w-full h-72 relative overflow-hidden rounded-xl mt-48"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          {/* Blur Effects */}
           <div className="pointer-events-none absolute top-0 left-0 w-20 h-full z-10 bg-gradient-to-r from-amber-100 via-transparent to-transparent" />
           <div className="pointer-events-none absolute top-0 right-0 w-20 h-full z-10 bg-gradient-to-l from-amber-100 via-transparent to-transparent" />
 
-          {/* Scrolling content */}
           <motion.div
             ref={contentRef}
             className="inline-flex items-center whitespace-nowrap py-3"
@@ -251,35 +233,18 @@ function App() {
             onDragEnd={() => setIsDragging(false)}
             dragElastic={0.1}
           >
-            {/* Original slides */}
             {tickerData.map((item, index) => (
-              <div
-                key={index}
-                className="relative w-[300px] h-[250px] rounded-xl overflow-hidden mx-3 shadow-lg"
-              >
-                <img
-                  src={item.image}
-                  alt={item.text}
-                  className="w-full h-full object-cover"
-                />
+              <div key={index} className="relative w-[300px] h-[250px] rounded-xl overflow-hidden mx-3 shadow-lg">
+                <img src={item.image} alt={item.text} className="w-full h-full object-cover" />
                 <div className="absolute left-0 bottom-0 w-full p-3 bg-gradient-to-t from-black/70 to-transparent">
                   <h3 className="text-white text-lg font-semibold">{item.text}</h3>
                   <p className="text-white text-sm mt-1">{item.subText}</p>
                 </div>
               </div>
             ))}
-
-            {/* Duplicate slides */}
             {tickerData.map((item, index) => (
-              <div
-                key={`dup-${index}`}
-                className="relative w-[300px] h-[250px] rounded-xl overflow-hidden mx-3 shadow-lg"
-              >
-                <img
-                  src={item.image}
-                  alt={item.text}
-                  className="w-full h-full object-cover"
-                />
+              <div key={`dup-${index}`} className="relative w-[300px] h-[250px] rounded-xl overflow-hidden mx-3 shadow-lg">
+                <img src={item.image} alt={item.text} className="w-full h-full object-cover" />
                 <div className="absolute left-0 bottom-0 w-full p-3 bg-gradient-to-t from-black/70 to-transparent">
                   <h3 className="text-white text-lg font-semibold">{item.text}</h3>
                   <p className="text-white text-sm mt-1">{item.subText}</p>
@@ -289,8 +254,9 @@ function App() {
           </motion.div>
         </div>
       </div>
+      <div className="absolute bottom-0 left-0 right-0 w-full bg-black h-1"></div>
     </section>
   );
-}
+};
 
-export default App;
+export default Section5;
