@@ -38,7 +38,7 @@ function Feature({ iconSrc, title }: { iconSrc: string; title: string }) {
       <div className="flex flex-col items-center text-center group">
         <div className="relative mb-6 w-40 h-40">
           <div className="bg-black w-full h-full rounded-full border-4 border-[#000000] flex items-center justify-center group-hover:bg-[#F9DF83]/80 transition-colors">
-            <img src={iconSrc} alt={title} className="w-28 h-28" />
+            <img src={iconSrc} alt={title} className="w-28 h-28 group-hover:brightness-0"/>
           </div>
         </div>
         <h3 className="text-black font-bold text-lg md:text-xl">{title}</h3>
