@@ -17,7 +17,7 @@ export default function Section1() {
             width={1200}
             height={675}
             layout="responsive"
-            className="w-full h-auto max-w-3xl mx-auto"
+            className="w-full h-auto max-w-3xl mx-auto opacity-0 animate-fadeIn"
           />
         </div>
 
