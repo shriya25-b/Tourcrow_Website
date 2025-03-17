@@ -9,20 +9,34 @@ export default function Section1() {
       style={{ backgroundImage: "url('/bg1.png')" }} // Replace with your image
     >
       <div className="relative z-10 max-w-4xl text-center space-y-12 px-4 sm:px-8 md:px-12">
-        
         {/* GIFs on the left and right above the image */}
         <div className="absolute top-[-100px] left-0 right-0 flex justify-between px-4 sm:px-12">
           {/* Left Side GIFs */}
-          <div className="flex flex-col items-start space-y-6 sm:space-y-8 md:space-y-10">
-            <img src="/gif/birdanimation.gif" alt="Flying Bird Left 1" className="w-16 sm:w-20 h-auto" />
-            <img src="/gif/birdanimation.gif" alt="Flying Bird Left 2" className="w-14 sm:w-16 h-auto ml-4 sm:ml-6" />
+          <div className="flex flex-col items-start space-y-8 sm:space-y-10 md:space-y-12">
+            <img
+              src="/gif/birdanimation_2.gif"
+              alt="Flying Bird Left 1"
+              className="w-96 sm:w-99 md:w-120 h-auto"
+            />
+            <img
+              src="/gif/birdanimation_2.gif"
+              alt="Flying Bird Left 2"
+              className="w-90 sm:w-96 md:w-120 h-auto ml-4 sm:ml-6"
+            />
           </div>
 
           {/* Right Side GIFs */}
-          <div className="flex flex-col items-end space-y-6 sm:space-y-8 md:space-y-10">
-            <img src="/gif/birdanimation.gif" alt="Flying Bird Right 1" className="w-16 sm:w-20 h-auto" />
-            <img src="/gif/birdanimation.gif" alt="Flying Bird Right 2" className="w-14 sm:w-16 h-auto mr-4 sm:mr-6" />
-            <img src="/gif/birdanimation.gif" alt="Flying Bird Right 3" className="w-12 sm:w-14 h-auto mr-6 sm:mr-12" />
+          <div className="flex flex-col items-end space-y-8 sm:space-y-10 md:space-y-12">
+            <img
+              src="/gif/birdanimation_2.gif"
+              alt="Flying Bird Right 1"
+              className="w-96 sm:w-99 md:w-120 h-auto"
+            />
+            <img
+              src="/gif/birdanimation_2.gif"
+              alt="Flying Bird Right 2"
+              className="w-90 sm:w-96 md:w-120 h-auto mr-4 sm:mr-6"
+            />
           </div>
         </div>
 
