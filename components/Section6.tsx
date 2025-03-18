@@ -33,28 +33,28 @@ export default function Section6() {
     
     // Reset form after submission
     setFormData({ name: "", email: "", message: "" })
-  }
+  } 
 
   return (
     <section className="relative py-16 md:py-52"
     style={{
-        backgroundImage: `url('bg Contact Section.png')`,
+        backgroundImage: `url('/bg5.png')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
       >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-10 ">  
         {/* Updated container with rounded corners and consistent yellow background */}
-        <div className="bg-[#FEF1C3] rounded-3xl shadow-lg overflow-hidden max-w-5xl mx-auto">
+        <div className="bg-[#FEC90F61]  rounded-3xl shadow-lg overflow-hidden max-w-5xl mx-auto ">
           <div className="flex flex-col md:flex-row p-6 md:p-10">
             {/* Left side with illustration */}
             <div className="w-full md:w-1/2 flex justify-center items-center mb-8 md:mb-0">
               <div className="relative w-full max-w-sm">
                 <Image
-                  src="/contact-concept-landing.png"
+                  src="/contact-telephone-landing.svg"
                   alt="Contact concept"
-                  width={400}
-                  height={400}
+                  width={100}
+                  height={100}
                   className="w-full h-auto"
                 />
               </div>
@@ -71,7 +71,7 @@ export default function Section6() {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Name"
-                    className="w-full rounded-2xl p-3 border-2 border-gray-200 focus:border-[#FEC90F] focus:ring-0 outline-none bg-white text-black"
+                    className="w-full font-bold placeholder-black rounded-2xl p-3 border-2 border-gray-200 focus:border-[#FEC90F] focus:ring-0 outline-none bg-white text-black"
                     required
                   />
                 </div>
@@ -83,7 +83,7 @@ export default function Section6() {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="Email"
-                    className="w-full rounded-2xl p-3 border-2 border-gray-200 focus:border-[#FEC90F] focus:ring-0 outline-none bg-white text-black"
+                    className="w-full font-bold placeholder-black rounded-2xl p-3 border-2 border-gray-200 focus:border-[#FEC90F] focus:ring-0 outline-none bg-white text-black"
                     required
                   />
                 </div>
@@ -95,7 +95,7 @@ export default function Section6() {
                     onChange={handleChange}
                     placeholder="Message"
                     rows={5}
-                    className="w-full rounded-2xl p-3 border-2 border-gray-200 focus:border-[#FEC90F] focus:ring-0 outline-none resize-none bg-white text-black"
+                    className="w-full font-bold placeholder-black rounded-2xl p-3 border-2 border-gray-200 focus:border-[#FEC90F] focus:ring-0 outline-none resize-none bg-white text-black"
                     required
                   />
                 </div>
@@ -103,7 +103,7 @@ export default function Section6() {
                 <div>
                   <button
                     type="submit"
-                    className="flex items-center gap-2 rounded-2xl px-6 py-3 bg-[#FEC90F] hover:bg-[#e8b80e] text-black font-medium transition-colors"
+                    className="flex font-bold items-center gap-2 rounded-2xl px-6 py-3 bg-[#FEC90F] hover:bg-[#e8b80e] text-black transition-colors"
                   >
                     Send Message
                     <Send size={18} />
@@ -115,17 +115,7 @@ export default function Section6() {
         </div>
       </div>
 
-      {/* Indian monuments silhouette at the bottom */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <Image
-          src="/indiastencil.svg"
-          alt="India Stencil"
-          width={1920}
-          height={100}
-          className="w-full h-[50px] md:h-[105px] object-cover"
-        />
-      </div>
-      <div className="absolute bottom-0 left-0 right-0 w-full bg-black h-1"></div>
+      
     </section>
   )
 }
