@@ -43,7 +43,7 @@ export default function Section6() {
         backgroundPosition: "center",
       }}
       >
-      <div className="container mx-auto px-10 ">  
+      <div className="container mx-auto px-4">  
         {/* Updated container with rounded corners and consistent yellow background */}
         <div className="bg-[#FEC90F61]  rounded-3xl shadow-lg overflow-hidden max-w-5xl mx-auto ">
           <div className="flex flex-col md:flex-row p-6 md:p-10">
@@ -53,8 +53,8 @@ export default function Section6() {
                 <Image
                   src="/contact-telephone-landing.svg"
                   alt="Contact concept"
-                  width={100}
-                  height={100}
+                  width={400}
+                  height={400}
                   className="w-full h-auto"
                 />
               </div>

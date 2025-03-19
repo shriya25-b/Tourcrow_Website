@@ -59,14 +59,14 @@ export default function Section2() {
             </h3>
             <div className="space-y-4">
               <p className="sm:text-2xl md:text-2xl lg:text-2xl font-medium text-black">
-                A travel platform that bridges the gap between influencers and their audience through exclusive experiential trips.
+              Bridging the gap between influencers and you | Once in a lifetime experience | Premium and well-organized | safety and comfort ensured.
               </p>
-              <p className="sm:text-2xl md:text-2xl lg:text-2xl font-medium text-black">
+              {/* <p className="sm:text-2xl md:text-2xl lg:text-2xl font-medium text-black">
                 Once in a lifetime opportunity to bond with your favorite influencers, beyond the screen.
               </p>
               <p className="sm:text-2xl md:text-2xl lg:text-2xl font-medium text-black">
                 Premium and well-organized travel experiences with safety and comfort ensured.
-              </p>
+              </p> */}
             </div>
           </div>
         </div>
@@ -80,14 +80,15 @@ export default function Section2() {
             </h3>
             <div className="space-y-4">
               <p className="sm:text-2xl md:text-2xl lg:text-2xl font-medium text-black">
-                Curated itineraries designed with your favorite influencers to create authentic and memorable experiences.
+              Curated itineraries | Exclusive access | Professional
+              photography and content creation opportunities.
               </p>
-              <p className="sm:text-2xl md:text-2xl lg:text-2xl font-medium text-black">
+              {/* <p className="sm:text-2xl md:text-2xl lg:text-2xl font-medium text-black">
                 Exclusive access to unique locations and activities that aren't available to regular tourists.
               </p>
               <p className="sm:text-2xl md:text-2xl lg:text-2xl font-medium text-black">
                 Professional photography and content creation opportunities throughout your journey.
-              </p>
+              </p> */}
             </div>
           </div>
           {/* Right Column: Illustration */}
