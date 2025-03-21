@@ -1,49 +1,57 @@
 import Image from "next/image"
 import Link from "next/link"
+import { FaLinkedin, FaInstagram } from "react-icons/fa"
 
 export default function Section7() {
   return (
-    <main className="h-72 text-white relative">
-      <div className=" bg-black absolute inset-0 z-0"></div>
-
-      {/* Content */}
-      <div className=" relative z-10">
-        <nav className="w-3/4 container mx-auto px-4 py-6 flex items-center justify-around">
-          {/* Logo */}
-          <div className="flex items-center ml-[-60px]">
-            <Image src="/Logo.svg" alt="Logo" width={100} height={100} />
+    <main className="h-auto text-white relative bg-black pb-12">
+      {/* Indian monuments silhouette at the bottom */}
+      <div className="absolute -top-12 md:-top-20 left-0 right-0">
+        <Image
+          src="/indiastencil.svg"
+          alt="India Stencil"
+          width={1920}
+          height={100}
+          className="w-full h-[50px] md:h-[90px] object-cover"
+        />
+      </div>
+      <div className="bg-black absolute inset-0 z-0"></div>
+      <div className="relative z-10">
+        <nav className="container mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-center lg:gap-24">
+          {/* Logo + Travel Section */}
+          <div className="flex flex-col md:flex-row items-center md:gap-8 lg:gap-16 space-y-4 md:space-y-0 md:space-x-6">
+            <Image
+              src="/Logo.svg"
+              alt="Logo"
+              width={100}
+              height={100}
+              className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24"
+            />
+            <div className="space-y-2 text-center md:text-left">
+              <h2 className="font-semibold text-lg">Travel Beyond Screens</h2>
+              <div className="flex flex-col"></div>
+            </div>
           </div>
 
           {/* Navigation */}
-          <div className="hidden md:flex space-x-32 text-lg">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:gap-20 text-center md:text-left mt-6 md:mt-0">
             <div className="space-y-2">
-              <h2 className="font-semibold">Travel</h2>
-              <p className="text-sm text-white max-w-[200px]">
-                You choose the Destination, We offer you the Experience.
-              </p>
-            </div>
-            <div className="space-y-2">
-              <h2 className="font-semibold">About</h2>
+              <h2 className="font-semibold text-lg">About</h2>
               <ul className="space-y-1 text-sm text-white">
                 <li>
-                  <Link href="#" className="hover:text-[#fec90f]">
+                  <Link href="/about" className="hover:text-[#fec90f]">
                     About Us
                   </Link>
                 </li>
                 <li>
                   <Link href="#" className="hover:text-[#fec90f]">
-                    Features
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-[#fec90f]">
-                    New & Blow
+                    New & Blog
                   </Link>
                 </li>
               </ul>
             </div>
             <div className="space-y-2">
-              <h2 className="font-semibold">Company</h2>
+              <h2 className="font-semibold text-lg">Company</h2>
               <ul className="space-y-1 text-sm text-white">
                 <li>
                   <Link href="#" className="hover:text-[#fec90f]">
@@ -52,27 +60,17 @@ export default function Section7() {
                 </li>
                 <li>
                   <Link href="#" className="hover:text-[#fec90f]">
-                    Plan & Pricing
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-[#fec90f]">
-                    Become a member
+                    Join our Influencer's Club
                   </Link>
                 </li>
               </ul>
             </div>
             <div className="space-y-2">
-              <h2 className="font-semibold">Support</h2>
+              <h2 className="font-semibold text-lg">Support</h2>
               <ul className="space-y-1 text-sm text-white">
                 <li>
                   <Link href="#" className="hover:text-[#fec90f]">
                     FAQs
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-[#fec90f]">
-                    Support Center
                   </Link>
                 </li>
                 <li>
@@ -85,19 +83,15 @@ export default function Section7() {
           </div>
         </nav>
 
-        {/* Mobile Menu Button */}
-        {/* <button className="md:hidden fixed top-6 right-4 z-50">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button> */}
-
-        {/* Decorative Footer */}
-        {/* <div className="absolute bottom-0 left-0 right-0">
-          <div className="w-full">
-           <path d="M0,0 L1200,0 L1200,120 L0,120 Z" className="fill-black opacity-10" />
-           </div>
-        </div> */}
+        {/* Social Media Icons */}
+        <div className="flex justify-center mt-0 gap-6 ">
+          <Link href="https://www.linkedin.com/company/tourcrowtravel/" target="_blank">
+            <FaLinkedin className="text-white hover:text-[#fec90f] text-2xl" />
+          </Link>
+          <Link href="https://www.instagram.com/tourcrow/" target="_blank">
+            <FaInstagram className="text-white hover:text-[#fec90f] text-2xl" />
+          </Link>
+        </div>
       </div>
     </main>
   )
