@@ -15,7 +15,11 @@ export default function Section3() {
                 </h1>
 
                 {/* Features grid */}
+<<<<<<< HEAD
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
+=======
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-12 max-w-6xl mx-auto">
+>>>>>>> b7e576553cff02823f70c4fe26790cf125b949ea
                     <Feature iconSrc="/community.svg" title="Community Focused" />
                     <Feature iconSrc="/globe.svg" title="Discover Hidden Gems" />
                     <Feature iconSrc="/yoga.svg" title="Stress-Free Travel" />
@@ -38,6 +42,13 @@ interface FeatureProps {
 
 function Feature({ iconSrc, title }: FeatureProps) {
     return (
+<<<<<<< HEAD
+      <div className="flex flex-col items-center text-center group">
+        <div className="relative mb-6 w-40 h-40">
+          <div className="bg-black w-full h-full rounded-full border-4 border-[#000000] flex items-center justify-center group-hover:bg-[#ffcd13]/80 transition-colors">
+            <img src={iconSrc} alt={title} className="w-28 h-28 group-hover:brightness-0"/>
+          </div>
+=======
         <div className="flex flex-col items-center text-center group">
             <div className="relative mb-6 w-20 h-20 sm:w-40 sm:h-40">
                 <div className="bg-black w-full h-full rounded-full border-4 border-[#000000] flex items-center justify-center group-hover:bg-[#FEC90F]/80 transition-colors">
@@ -45,6 +56,11 @@ function Feature({ iconSrc, title }: FeatureProps) {
                 </div>
             </div>
             <h3 className="text-black font-bold text-sm sm:text-lg md:text-xl">{title}</h3>
+>>>>>>> b7e576553cff02823f70c4fe26790cf125b949ea
         </div>
     );
+<<<<<<< HEAD
+  }
+=======
 }
+>>>>>>> b7e576553cff02823f70c4fe26790cf125b949ea

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false); // State to toggle the mobile menu
@@ -12,7 +13,18 @@ const Navbar = () => {
         <div className="hidden md:flex justify-center">
           <div className="border-4 border-brand-yellow rounded-full px-12 py-3 bg-black/80">
             {/* Navigation links */}
-            <ul className="flex space-x-14 text-brand-yellow">
+            <ul className="flex space-x-14 text-brand-yellow items-center">
+              <li>
+                <Link href="/" className="hover:opacity-80 transition-opacity">
+                  <Image
+                    src="/Logo.svg"
+                    alt="Logo"
+                    width={40}
+                    height={40}
+                    className=""
+                  />
+                </Link>
+              </li>
               <li>
                 <Link href="/" className="hover:opacity-80 transition-opacity">
                   Home
@@ -45,14 +57,19 @@ const Navbar = () => {
           className="text-brand-black hover:text-brand-yellow transition-colors"
           onClick={() => setIsOpen(!isOpen)}
         >
-          {isOpen ? <span className="text-2xl">X</span> : <span className="text-2xl">☰</span>}
+          {isOpen ? <span className="text-2xl">X</span> : <span className="text-2xl"><Image
+            src="/Logo.svg"
+            alt="Logo"
+            width={40}
+            height={40}
+            className=""
+          /></span>}
         </button>
 
         {/* Mobile Navigation Links */}
         <div
-          className={`${
-            isOpen ? "block" : "hidden"
-          } absolute top-16 left-0 right-0 bg-black/80 p-4`}
+          className={`${isOpen ? "block" : "hidden"
+            } absolute top-16 left-0 right-0 bg-black/80 p-4`}
         >
           <ul className="flex flex-col items-center space-y-6 text-brand-yellow">
             <li>

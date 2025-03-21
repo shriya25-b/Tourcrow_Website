@@ -9,6 +9,58 @@ body{
    
 }
 
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 13px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #fdf5c9;  /* Light pastel yellow */
+  border-radius: 10px;
+}
+
+/* Thumb */
+::-webkit-scrollbar-thumb {
+  background: #ffcc00;  /* Bright yellow */
+  border-radius: 10px;
+  border: 3px solid #fdf5c9;  /* Lighter yellow border */
+  transition: all 0.3s ease;
+}
+
+/* Hover Effect */
+::-webkit-scrollbar-thumb:hover {
+  background: #ffb300;  /* Darker yellow on hover */
+}
+
+/* Up and Down Icons */
+::-webkit-scrollbar-button:single-button {
+  background: #ffcc00;  /* Same yellow shade as thumb */
+  display: block;
+  border-radius: 50%;
+  height: 15px;   /* Matching the width */
+  width: 15px;    
+  transition: all 0.3s ease;
+}
+
+/* Up Arrow */
+::-webkit-scrollbar-button:single-button:vertical:decrement {
+  background: #ffcc00 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23333"><path d="M7 14l5-5 5 5z"/></svg>') no-repeat center;
+  background-size: 60%;
+}
+
+/* Down Arrow */
+::-webkit-scrollbar-button:single-button:vertical:increment {
+  background: #ffcc00 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23333"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat center;
+  background-size: 60%;
+}
+
+/* Hover Effect for Buttons */
+::-webkit-scrollbar-button:hover {
+  background: #ffb300;  /* Darker yellow */
+}
+
+
 .shared-bg {
   background-image: url('/bg3.png');
   background-size: cover;
