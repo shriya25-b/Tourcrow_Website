@@ -39,13 +39,17 @@ export default function Section7() {
               <h2 className="font-semibold text-lg">About</h2>
               <ul className="space-y-1 text-sm text-white">
                 <li>
-                  <Link href="#" className="hover:text-[#fec90f]">
+                  <Link href="/about" className="hover:text-[#fec90f]">
                     About Us
                   </Link>
                 </li>
                 <li>
                   <Link href="#" className="hover:text-[#fec90f]">
+<<<<<<< HEAD
                     New & Blow
+=======
+                    New & Blog
+>>>>>>> b7e576553cff02823f70c4fe26790cf125b949ea
                   </Link>
                 </li>
               </ul>
@@ -88,7 +92,11 @@ export default function Section7() {
           <Link href="https://www.linkedin.com/company/tourcrowtravel/" target="_blank">
             <FaLinkedin className="text-white hover:text-[#fec90f] text-2xl" />
           </Link>
+<<<<<<< HEAD
           <Link href="hhttps://www.instagram.com/tourcrow/" target="_blank">
+=======
+          <Link href="https://www.instagram.com/tourcrow/" target="_blank">
+>>>>>>> b7e576553cff02823f70c4fe26790cf125b949ea
             <FaInstagram className="text-white hover:text-[#fec90f] text-2xl" />
           </Link>
         </div>
