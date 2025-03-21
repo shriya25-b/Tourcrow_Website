@@ -15,7 +15,7 @@ export default function Section3() {
                 <h1 className="text-center text-black text-5xl md:text-6xl font-bold mb-24">Why Choose Tourcrow?</h1>
 
                 {/* Features grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
                     <Feature iconSrc="/community.svg" title="Community Focused" />
                     <Feature iconSrc="/globe.svg" title="Discover Hidden Gems" />
                     <Feature iconSrc="/yoga.svg" title="Stress-Free Travel" />
@@ -37,7 +37,7 @@ function Feature({ iconSrc, title }: { iconSrc: string; title: string }) {
     return (
       <div className="flex flex-col items-center text-center group">
         <div className="relative mb-6 w-40 h-40">
-          <div className="bg-black w-full h-full rounded-full border-4 border-[#000000] flex items-center justify-center group-hover:bg-[#F9DF83]/80 transition-colors">
+          <div className="bg-black w-full h-full rounded-full border-4 border-[#000000] flex items-center justify-center group-hover:bg-[#ffcd13]/80 transition-colors">
             <img src={iconSrc} alt={title} className="w-28 h-28 group-hover:brightness-0"/>
           </div>
         </div>
@@ -45,4 +45,3 @@ function Feature({ iconSrc, title }: { iconSrc: string; title: string }) {
       </div>
     );
   }
-  
