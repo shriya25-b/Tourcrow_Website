@@ -4,7 +4,7 @@ export default function Section2() {
   return (
     <section
 
-      className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
+      className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat "
       style={{ backgroundImage: "url('/bg2.png')" }} // Replace with your image
     >
       <div className="container w-full px-4 sm:px-8 lg:px-20 py-2">

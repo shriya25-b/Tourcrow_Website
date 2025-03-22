@@ -98,30 +98,21 @@ function Section5() {
   return (
     <section
       className="min-h-screen flex flex-col items-center justify-center bg-cover bg-center bg-no-repeat relative"
-<<<<<<< HEAD
-      style={{ backgroundImage: "url('/bg5.png')" }}
-=======
-      style={{ backgroundImage: "url('/bg Contact Section.png')" }}
->>>>>>> b7e576553cff02823f70c4fe26790cf125b949ea
+style={{ backgroundImage: "url('/bg5.png')" }}
     >
       <h1 className="text-center text-black text-4xl md:text-5xl lg:text-6xl font-bold mt-14">
         Destination For Every BucketList
       </h1>
 
-      <div className="w-full min-h-screen bg-gradient-to-b flex items-center justify-center">
-<<<<<<< HEAD
-        <div className="w-full py-16 px-4 mb-20 relative overflow-visible">
-=======
-        <div className="w-full py-14 px-4 mb-20 relative overflow-visible">
->>>>>>> b7e576553cff02823f70c4fe26790cf125b949ea
-          
-          {/* Left Arrow */}
-          <button
-            onClick={handleLeftClick}
-            className="absolute left-4 top-1/2 -translate-y-1/2 text-black p-4 rounded-full z-20 hover:bg-amber-300/50"
-          >
-            ◀
-          </button>
+<div className="w-full min-h-screen bg-gradient-to-b flex items-center justify-center">
+  <div className="w-full py-16 px-4 mb-20 relative overflow-visible">
+    {/* Left Arrow */}
+    <button
+      onClick={handleLeftClick}
+      className="absolute left-4 top-1/2 -translate-y-1/2 text-black p-4 rounded-full z-20 hover:bg-amber-300/50"
+    >
+      ◀
+    </button>
 
           {/* Right Arrow */}
           <button
