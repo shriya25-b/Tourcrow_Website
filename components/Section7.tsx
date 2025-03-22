@@ -12,7 +12,7 @@ export default function Section7() {
           alt="India Stencil"
           width={1920}
           height={100}
-          className="w-full h-[50px] md:h-[90px] object-cover"
+          className="w-full h-[50px] md:h-[100px] object-cover"
         />
       </div>
       <div className="bg-black absolute inset-0 z-0"></div>
@@ -34,7 +34,7 @@ export default function Section7() {
           </div>
 
           {/* Navigation */}
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:gap-20 text-center md:text-left mt-6 md:mt-0">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 lg:gap-20 text-center md:text-left mt-6 md:mt-0">
             <div className="space-y-2">
               <h2 className="font-semibold text-lg">About</h2>
               <ul className="space-y-1 text-sm text-white">
@@ -45,11 +45,7 @@ export default function Section7() {
                 </li>
                 <li>
                   <Link href="#" className="hover:text-[#fec90f]">
-<<<<<<< HEAD
-                    New & Blow
-=======
                     New & Blog
->>>>>>> b7e576553cff02823f70c4fe26790cf125b949ea
                   </Link>
                 </li>
               </ul>
@@ -92,11 +88,7 @@ export default function Section7() {
           <Link href="https://www.linkedin.com/company/tourcrowtravel/" target="_blank">
             <FaLinkedin className="text-white hover:text-[#fec90f] text-2xl" />
           </Link>
-<<<<<<< HEAD
-          <Link href="hhttps://www.instagram.com/tourcrow/" target="_blank">
-=======
           <Link href="https://www.instagram.com/tourcrow/" target="_blank">
->>>>>>> b7e576553cff02823f70c4fe26790cf125b949ea
             <FaInstagram className="text-white hover:text-[#fec90f] text-2xl" />
           </Link>
         </div>

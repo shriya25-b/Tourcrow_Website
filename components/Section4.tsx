@@ -6,7 +6,7 @@ const Section4 = () => {
       <h1 className="text-center text-black text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
         Influencer Categories
       </h1>
-      <div className="mt-6 grid grid-cols-2 md:grid-cols-4 place-items-center gap-y-8 h-full w-2/3">
+      <div className="mt-24 grid grid-cols-2 md:grid-cols-4 place-items-center gap-y-8 h-full w-2/3">
         {/* Travel influencer */}
         <div className="w-full h-full text-center flex flex-col items-center">
           <Image
