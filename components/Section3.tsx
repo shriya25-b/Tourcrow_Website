@@ -15,7 +15,7 @@ export default function Section3() {
                 </h1>
 
                 {/* Features grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-12 max-w-6xl mx-auto">
+                <div className="grid grid-cols-1 pt-4 lg:pt-20 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-12 max-w-6xl mx-auto  ">
                     <Feature iconSrc="/community.svg" title="Community Focused" />
                     <Feature iconSrc="/globe.svg" title="Discover Hidden Gems" />
                     <Feature iconSrc="/yoga.svg" title="Stress-Free Travel" />

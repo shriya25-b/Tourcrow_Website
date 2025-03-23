@@ -3,10 +3,10 @@ import Image from "next/image";
 const Section4 = () => {
   return (
     <div className="min-h-screen pt-6 flex flex-col items-center">
-      <h1 className="text-center text-black text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
+      <h1 className="text-center text-black text-4xl sm:text-5xl md:text-6xl font-bold ">
         Influencer Categories
       </h1>
-      <div className="mt-24 grid grid-cols-2 md:grid-cols-4 place-items-center gap-y-8 h-full w-2/3">
+      <div className="mt-12 grid grid-cols-2 md:grid-cols-4 place-items-center gap-y-8 h-full w-2/3 pt-1 lg:pt-32">
         {/* Travel influencer */}
         <div className="w-full h-full text-center flex flex-col items-center">
           <Image

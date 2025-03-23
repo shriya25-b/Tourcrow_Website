@@ -1,3 +1,4 @@
+'use client';
 import Link from "next/link";
 import Image from "next/image";
 
@@ -5,67 +6,84 @@ export default function Section1() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat "
-      style={{ backgroundImage: "url('/bg1.png')" }} // Replace with your image
+      className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat px-4 sm:px-8 overflow-hidden relative"
+      style={{ backgroundImage: "url('/bg_section1.svg')" }}
     >
-      <div className="relative z-10 max-w-4xl text-center space-y-12 px-4 sm:px-8 md:px-12">
-        {/* GIFs on the left and right above the image */}
-        <div className="absolute top-[-50px] left-0 right-0 flex justify-between px-4 sm:px-12">
-          {/* Left Side GIFs */}
-          <div className="flex flex-col items-start space-y-8 sm:space-y-10 md:space-y-12">
-            {/* <img
-              src="/gif/birdanimation_2.gif"
-              alt="Flying Bird Left 1"
-              className="w-96 sm:w-99 md:w-120 h-auto"
-            /> */}
-            {/* <img
-              src="/gif/birdanimation_2.gif"
-              alt="Flying Bird Left 2"
-              className="w-90 sm:w-96 md:w-120 h-auto ml-4 sm:ml-6 -scale-x-100"
-            />         */}
-          </div>
+      {/* Flying Crow Animations */}
+      <div className="absolute top-10 left-0 w-full pointer-events-none">
+        {/* First Crow */}
+        <img
+          src="/bird.gif"
+          alt="Flying Crow 1"
+          className="w-24 sm:w-32 md:w-40 h-auto absolute animate-fly1 z-[9999]"
+        />
+        {/* Second Crow (Evenly Spaced) */}
+        <img
+          src="/bird.gif"
+          alt="Flying Crow 2"
+          className="w-24 sm:w-32 md:w-40 h-auto absolute animate-fly2 z-[9999]"
+        />
+      </div>
 
-          {/* Right Side GIFs */}
-          <div className="flex flex-col items-end space-y-8 sm:space-y-10 md:space-y-12">
-            {/* <img
-              src="/gif/birdanimation_2.gif"
-              alt="Flying Bird Right 1"
-              className="w-96 sm:w-99 md:w-120 h-auto"
-            /> */}
-            {/* <img
-              src="/gif/birdanimation_2.gif"
-              alt="Flying Bird Right 2"
-              className="w-90 sm:w-96 md:w-120 h-auto mr-4 sm:mr-6"
-            /> */}
-          </div>
-        </div>
-
-        {/* Increased Image Size */}
-        <div className="flex justify-center mt-[-80px] sm:mt-[-100px] md:mt-[-120px]">
+      {/* Title Image */}
+      <div className="relative z-10 max-w-4xl text-center space-y-12">
+        <div className="flex justify-center mt-[-60px] sm:mt-[-80px] md:mt-[-100px]">
           <Image
             src="/TourCrowText.svg"
             alt="TourCrow text"
-            width={1200}
-            height={675}
+            width={1000}
+            height={500}
             layout="responsive"
             className="w-full h-auto max-w-3xl mx-auto opacity-0 animate-fadeIn"
           />
         </div>
 
-        {/* Buttons Centered */}
+        {/* Buttons */}
         <div className="flex flex-col sm:flex-row justify-center gap-6 sm:gap-8">
           <Link href="/host-trip" className="inline-block">
-            <button className="w-full sm:w-auto bg-white hover:bg-[#fec90f] text-[#231f20] font-bold py-4 px-8 sm:px-12 rounded-full transition-colors duration-300 text-xl border-2 border-black">
+            <button className="w-[200px] sm:w-auto bg-white hover:bg-[#fec90f] text-[#231f20] font-bold py-4 px-8 sm:px-12 rounded-full transition-colors duration-300 text-lg sm:text-xl border-2 border-black">
               Host Trip
             </button>
           </Link>
           <Link href="/join-trip" className="inline-block">
-            <button className="w-full sm:w-auto bg-white hover:bg-[#fec90f] text-[#231f20] font-bold py-4 px-8 sm:px-12 rounded-full transition-colors duration-300 text-xl border-2 border-black">
+            <button className="w-[200px] sm:w-auto bg-white hover:bg-[#fec90f] text-[#231f20] font-bold py-4 px-8 sm:px-12 rounded-full transition-colors duration-300 text-lg sm:text-xl border-2 border-black">
               Join Trip
             </button>
           </Link>
         </div>
       </div>
+
+      <style jsx>{`
+        /* Prevent Horizontal Scroll */
+        html, body {
+          overflow-x: hidden;
+        }
+
+        /* First Crow Animation */
+        .animate-fly1 {
+          position: absolute;
+          left: -15%;
+          top: 50px;
+          animation: flyAcross 6s linear infinite;
+        }
+
+        /* Second Crow (Evenly Spaced from Start) */
+        .animate-fly2 {
+          position: absolute;
+          left: -15%;
+          top: 100px;
+          animation: flyAcross 8s linear infinite;
+        }
+
+        @keyframes flyAcross {
+          from {
+            transform: translateX(-20%);
+          }
+          to {
+            transform: translateX(110vw);
+          }
+        }
+      `}</style>
     </section>
   );
 }

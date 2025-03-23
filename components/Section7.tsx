@@ -6,9 +6,9 @@ export default function Section7() {
   return (
     <main className="h-auto text-white relative bg-black pb-12">
       {/* Indian monuments silhouette at the bottom */}
-      <div className="absolute -top-12 md:-top-20 left-0 right-0">
+      <div className="absolute -top-12 md:-top-24 left-0 right-0">
         <Image
-          src="/indiastencil.svg"
+          src="/indiastencil.png"
           alt="India Stencil"
           width={1920}
           height={100}
@@ -34,7 +34,7 @@ export default function Section7() {
           </div>
 
           {/* Navigation */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 lg:gap-20 text-center md:text-left mt-6 md:mt-0">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-5 lg:gap-20 text-center md:text-left mt-6 md:mt-0">
             <div className="space-y-2">
               <h2 className="font-semibold text-lg">About</h2>
               <ul className="space-y-1 text-sm text-white">
@@ -45,7 +45,7 @@ export default function Section7() {
                 </li>
                 <li>
                   <Link href="#" className="hover:text-[#fec90f]">
-                    New & Blog
+New & Blog
                   </Link>
                 </li>
               </ul>
@@ -87,10 +87,10 @@ export default function Section7() {
         <div className="flex justify-center mt-0 gap-6 ">
           <Link href="https://www.linkedin.com/company/tourcrowtravel/" target="_blank">
             <FaLinkedin className="text-white hover:text-[#fec90f] text-2xl" />
-          </Link>
-          <Link href="https://www.instagram.com/tourcrow/" target="_blank">
-            <FaInstagram className="text-white hover:text-[#fec90f] text-2xl" />
-          </Link>
+            </Link>
+            <Link href="https://www.instagram.com/tourcrow/" target="_blank">
+              <FaInstagram className="text-white hover:text-[#fec90f] text-2xl" />
+            </Link>
         </div>
       </div>
     </main>

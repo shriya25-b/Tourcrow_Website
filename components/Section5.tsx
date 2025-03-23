@@ -97,15 +97,15 @@ function Section5() {
 
   return (
     <section
-      className="flex flex-col items-center justify-center bg-cover bg-center bg-no-repeat relative"
+      className="min-h-screen flex flex-col items-center justify-center bg-cover bg-center bg-no-repeat relative"
       style={{ backgroundImage: "url('/bg5.png')" }}
     >
       <h1 className="text-center text-black text-4xl md:text-5xl lg:text-6xl font-bold mt-14">
         Destination For Every BucketList
       </h1>
 
-      <div className="min-h-screen w-full bg-gradient-to-b flex items-center justify-center">
-        <div className="w-full py-14 px-4 mb-20 relative overflow-visible">
+      <div className="w-full md:min-h-screen h-[500px] bg-gradient-to-b flex items-center justify-center">
+        <div className="w-full py-16 px-4 mb-20 relative overflow-visible">
           
           {/* Left Arrow */}
           <button
