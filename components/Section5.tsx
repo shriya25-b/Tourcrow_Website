@@ -104,7 +104,7 @@ function Section5() {
         Destination For Every BucketList
       </h1>
 
-      <div className="w-full min-h-screen bg-gradient-to-b flex items-center justify-center">
+      <div className="w-full md:min-h-screen h-[500px] bg-gradient-to-b flex items-center justify-center">
         <div className="w-full py-16 px-4 mb-20 relative overflow-visible">
           
           {/* Left Arrow */}

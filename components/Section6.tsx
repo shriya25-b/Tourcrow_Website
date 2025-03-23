@@ -36,7 +36,7 @@ export default function Section6() {
   } 
 
   return (
-    <section className="relative py-16 md:py-52"
+    <section className="relative py-16 md:py-52 mb-10"
     style={{
         backgroundImage: `url('/bg Contact Section.png')`,
         backgroundSize: "cover",
