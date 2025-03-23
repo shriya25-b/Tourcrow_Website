@@ -58,12 +58,12 @@ const Navbar = () => {
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <span className="text-2xl">X</span> : <span className="text-2xl"><Image
-            src="/Logo.svg"
-            alt="Logo"
-            width={40}
-            height={40}
-            className=""
-          /></span>}
+                    src="/Logo.svg"
+                    alt="Logo"
+                    width={40}
+                    height={40}
+                    className=""
+                  /></span>}
         </button>
 
         {/* Mobile Navigation Links */}

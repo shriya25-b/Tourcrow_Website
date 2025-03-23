@@ -13,13 +13,13 @@ export default function Section1() {
       <div className="absolute top-10 left-0 w-full pointer-events-none">
         {/* First Crow */}
         <img
-          src="/gif/birdanimation.gif"
+          src="/bird.gif"
           alt="Flying Crow 1"
           className="w-24 sm:w-32 md:w-40 h-auto absolute animate-fly1 z-[9999]"
         />
         {/* Second Crow (Evenly Spaced) */}
         <img
-          src="/gif/birdanimation.gif"
+          src="/bird.gif"
           alt="Flying Crow 2"
           className="w-24 sm:w-32 md:w-40 h-auto absolute animate-fly2 z-[9999]"
         />
@@ -34,7 +34,7 @@ export default function Section1() {
             width={1000}
             height={500}
             layout="responsive"
-            className="w-full h-auto max-w-2xl mx-auto opacity-0 animate-fadeIn"
+            className="w-full h-auto max-w-3xl mx-auto opacity-0 animate-fadeIn"
           />
         </div>
 

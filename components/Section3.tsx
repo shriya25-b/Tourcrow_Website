@@ -15,17 +15,17 @@ export default function Section3() {
                 </h1>
 
                 {/* Features grid */}
-<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-12 max-w-6xl mx-auto">
-    <Feature iconSrc="/community.svg" title="Community Focused" />
-    <Feature iconSrc="/globe.svg" title="Discover Hidden Gems" />
-    <Feature iconSrc="/yoga.svg" title="Stress-Free Travel" />
-    <Feature iconSrc="/mobile.svg" title="Meet Your Favourite Influencer" />
-    
-    {/* Last icon centered on mobile */}
-    <div className="col-span-full sm:col-auto flex justify-center">
-        <Feature iconSrc="/location.svg" title="Local Experience" />
-    </div>
-</div>
+                <div className="grid grid-cols-1 pt-4 lg:pt-20 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-12 max-w-6xl mx-auto  ">
+                    <Feature iconSrc="/community.svg" title="Community Focused" />
+                    <Feature iconSrc="/globe.svg" title="Discover Hidden Gems" />
+                    <Feature iconSrc="/yoga.svg" title="Stress-Free Travel" />
+                    <Feature iconSrc="/mobile.svg" title="Meet Your Favourite Influencer" />
+                    
+                    {/* Last icon centered on mobile */}
+                    <div className="col-span-full sm:col-auto flex justify-center">
+                        <Feature iconSrc="/location.svg" title="Local Experience" />
+                    </div>
+                </div>
             </div>
         </section>
     );
@@ -38,7 +38,6 @@ interface FeatureProps {
 
 function Feature({ iconSrc, title }: FeatureProps) {
     return (
-        
         <div className="flex flex-col items-center text-center group">
             <div className="relative mb-6 w-20 h-20 sm:w-40 sm:h-40">
                 <div className="bg-black w-full h-full rounded-full border-4 border-[#000000] flex items-center justify-center group-hover:bg-[#FEC90F]/80 transition-colors">
