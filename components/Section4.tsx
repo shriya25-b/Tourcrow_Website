@@ -2,51 +2,52 @@ import Image from "next/image";
 
 const Section4 = () => {
   return (
-    <div className=" h-screen pt-6 flex flex-col items-center">
-
-      <h1 className="text-center text-black text-5xl md:text-6xl font-bold mb-0">Influencer Categories</h1>
-      <div className="mt-6 grid grid-cols-4 place-items-center h-4/5 w-2/3">
+    <div className="min-h-screen pt-6 flex flex-col items-center">
+      <h1 className="text-center text-black text-4xl sm:text-5xl md:text-6xl font-bold ">
+        Influencer Categories
+      </h1>
+      <div className="mt-12 grid grid-cols-2 md:grid-cols-4 place-items-center gap-y-8 h-full w-2/3 pt-1 lg:pt-32">
+        {/* Travel influencer */}
         <div className="w-full h-full text-center flex flex-col items-center">
-          {/* Travel influcenser */}
           <Image
             src="/images/img1.svg"
             alt="Travel Influencers"
-            width={200} // w-64 = 256px
-            height={100} // h-48 = 192px
-            className="object-cover mt-28"
+            width={400}
+            height={400}
+            className="max-w-[120px] sm:max-w-[160px] md:max-w-[200px] lg:max-w-[180px] h-auto object-contain mt-28"
           />
         </div>
 
-         {/* Tech influcenser */}
+        {/* Tech influencer */}
         <div className="w-full h-full text-center flex flex-col items-center justify-end">
-        <Image
+          <Image
             src="/images/img2.svg"
             alt="Tech Influencers"
-            width={200} // w-64 = 256px
-            height={100} // h-48 = 192px
-            className="object-cover mb-28"
+            width={400}
+            height={400}
+            className="max-w-[120px] sm:max-w-[160px] md:max-w-[200px] lg:max-w-[180px] h-auto object-contain mb-28"
           />
         </div>
 
-         {/* Fitness influcenser */}
+        {/* Fitness influencer */}
         <div className="w-full h-full text-center flex flex-col items-center">
-        <Image
+          <Image
             src="/images/img3.svg"
             alt="Fitness Influencers"
-            width={200} // w-64 = 256px
-            height={100} // h-48 = 192px
-            className="object-cover mt-28"
+            width={400}
+            height={400}
+            className="max-w-[120px] sm:max-w-[160px] md:max-w-[200px] lg:max-w-[180px] h-auto object-contain mt-28"
           />
         </div>
 
-        {/* Fashion influcenser */}
+        {/* Fashion influencer */}
         <div className="w-full h-full text-center flex flex-col items-center justify-end">
-        <Image
+          <Image
             src="/images/img4.svg"
             alt="Fashion Influencers"
-            width={200} // w-64 = 256px
-            height={100} // h-48 = 192px
-            className="object-cover mb-28"
+            width={400}
+            height={400}
+            className="max-w-[120px] sm:max-w-[160px] md:max-w-[200px] lg:max-w-[180px] h-auto object-contain mb-28"
           />
         </div>
       </div>
