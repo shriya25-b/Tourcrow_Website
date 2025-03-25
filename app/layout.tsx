@@ -12,6 +12,9 @@ const montserratAlternates = Montserrat_Alternates({
 export const metadata: Metadata = {
   title: "TourCrow",
   description: "Bridging the gap with influencers",
+  icons:{
+    icon:'/Logo.svg',
+  }
 };
 
 export default function RootLayout({

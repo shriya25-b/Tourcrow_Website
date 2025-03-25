@@ -33,7 +33,7 @@ export default function Section1() {
             alt="TourCrow text"
             width={1000}
             height={500}
-            layout="responsive"
+           // layout="responsive"
             className="w-full h-auto max-w-3xl mx-auto opacity-0 animate-fadeIn"
           />
         </div>
