@@ -27,7 +27,7 @@ export default function Section1() {
 
       {/* Title Image */}
       <div className="relative z-10 max-w-4xl text-center space-y-12">
-        <div className="flex justify-center mt-[-60px] sm:mt-[-80px] md:mt-[-100px]">
+        <div className="flex justify-center mt-[-60px] sm:mt-[-80px] md:mt-[40px]">
           <Image
             src="/TourCrowText.svg"
             alt="TourCrow text"
