@@ -64,9 +64,14 @@ import FadeContent from './FadeContent'; // Import the FadeContent component
 const Section4 = () => {
   return (
     <div className="md:min-h-screen  pt-6 flex flex-col items-center">
-      <h1 className="text-center text-black text-4xl sm:text-5xl md:text-6xl font-bold">
-        Influencer Categories
-      </h1>
+      <FadeContent blur={true} duration={1000} easing="ease-out" initialOpacity={0} delay={200} slideFrom="top">
+        <h1 className="text-center text-black text-4xl sm:text-5xl md:text-6xl font-bold">
+          Influencer Categories
+        </h1>
+      </FadeContent>
+
+     
+
       <div className="grid grid-cols-2 md:grid-cols-4 place-items-center gap-y-8 h-full w-2/3 pt-5 lg:pt-24">
         {/* Travel influencer */}
         <FadeContent blur={true} duration={1000} easing="ease-out" initialOpacity={0} slideFrom="top" delay={700}>

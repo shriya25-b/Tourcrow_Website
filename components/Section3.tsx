@@ -63,9 +63,11 @@ export default function Section3() {
         >
             {/* Main content */}
             <div className="relative z-10 container mx-auto px-4 pt-20 pb-32">
+            <FadeContent blur={true} duration={1000} easing="ease-out" initialOpacity={0} delay={200} slideFrom="right">
                 <h1 className="text-center text-black text-4xl sm:text-5xl md:text-6xl font-bold mb-16 sm:mb-24">
                     Why Choose Tourcrow?
                 </h1>
+                </FadeContent>
 
                 {/* Features grid */}
                 <div className="grid grid-cols-1 pt-4 lg:pt-20 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-12 max-w-6xl mx-auto">
