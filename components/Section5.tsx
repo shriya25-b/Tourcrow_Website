@@ -100,7 +100,7 @@ function Section5() {
       className="min-h-screen flex flex-col items-center justify-center bg-cover bg-center bg-no-repeat relative"
       style={{ backgroundImage: "url('/bg5.png')" }}
     >
-      <h1 className="text-center text-black text-4xl md:text-5xl lg:text-6xl font-bold mt-14">
+      <h1 className="text-center text-black text-4xl md:text-5xl lg:text-6xl font-bold mt-14 mb-5">
         Destination For Every BucketList
       </h1>
 
@@ -154,7 +154,7 @@ function Section5() {
               // ✅ Increased gap for below-text images
               const textGap = isAbove 
                 ? (window.innerWidth >= 768 ? 50 : 70)    // Gap above image
-                : (window.innerWidth >= 768 ? 90 : 120)   // Larger gap below image
+                : (window.innerWidth >= 768 ? 50 : 70)   // Larger gap below image
 
               const textSize = window.innerWidth >= 768 
                 ? "22"   // Larger text on desktop
