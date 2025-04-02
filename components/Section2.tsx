@@ -1,217 +1,116 @@
-// import Image from "next/image";
+'use client';
 
-// export default function Section2() {
-//   return (
-//     <section
-
-//       className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat px-4 sm:px-8 overflow-hidden relative"
-//       style={{ backgroundImage: "url('/bg2.png')", backgroundSize: "100% 100%" }} // Replace with your image
-//     >
-//       <div className="container w-full px-4 sm:px-8 lg:px-20 py-2">
-//         {/* Section Title */}
-
-
-//         {/* Row 1: Text on Left, Illustration on Right */}
-//         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-4 md:gap-x-2 lg:gap-x-16 items-center mb-16 relative mt-16 md:mt-0 lg:mt-0">
-//           {/* Left Column: Text */}
-//           <div className="space-y-4 text-left">
-//             <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#ffcd13]">
-//               Why Travelers Love Us
-//             </h3>
-//             <div className="space-y-6">
-//               <p className="sm:text-2xl md:text-2xl lg:text-2xl font-medium text-black">
-//                 Hassle-free trips | Exclusive experiences | Meet your favorite influencers</p>
-//             </div>
-//           </div>
-//           {/* Right Column: Illustration */}
-//           <div className="flex justify-center md:justify-end">
-//             <div className="relative">
-//               <Image
-//                 src="/section2_illustration1.svg"
-//                 alt="Traveler with luggage"
-//                 width={300}
-//                 height={300}
-//                 className="object-contain mt-10 max-h-60 md:max-h-80 lg:max-h-96"
-//               />
-
-//             </div>
-//           </div>
-//         </div>
-
-//         {/* Row 2: Illustration on Left, Text on Right */}
-//         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 md:gap-x-2 lg:gap-x-16 items-center mb-16">
-//           {/* Left Column: Illustration */}
-//           <div className="flex justify-center md:justify-start order-2 md:order-1">
-//             <div className="relative">
-//               <Image
-//                 src="/section2_illustration2.svg"
-//                 alt="Excited traveler with luggage"
-//                 width={300}
-//                 height={300}
-//                 className="object-contain max-h-96"
-//               />
-//             </div>
-//           </div>
-//           {/* Right Column: Text */}
-//           <div className="space-y-6 text-left order-1 md:order-2">
-//             <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#ffcd13]">
-//               Travel Beyond Screens!
-//             </h3>
-//             <div className="space-y-4">
-//               <p className="sm:text-2xl md:text-2xl lg:text-2xl font-medium text-black">
-//               Bridging the gap between influencers and you | Once in a lifetime experience | Premium and well-organized | safety and comfort ensured.
-//               </p>
-//               {/* <p className="sm:text-2xl md:text-2xl lg:text-2xl font-medium text-black">
-//                 Once in a lifetime opportunity to bond with your favorite influencers, beyond the screen.
-//               </p>
-//               <p className="sm:text-2xl md:text-2xl lg:text-2xl font-medium text-black">
-//                 Premium and well-organized travel experiences with safety and comfort ensured.
-//               </p> */}
-//             </div>
-//           </div>
-//         </div>
-
-//         {/* Row 3: Text on Left, Illustration on Right */}
-//         <div className="grid grid-cols-1 md:grid-cols-2 gap-1  mb-9 items-center">
-//           {/* Left Column: Text */}
-//           <div className="space-y-6 text-left">
-//             <h3 className="text-3xl md:text-4xl lg:text-5xl  font-bold text-[#ffcd13]">
-//               What’s in it for Customers?
-//             </h3>
-//             <div className="space-y-4">
-//               <p className="sm:text-2xl md:text-2xl lg:text-2xl font-medium text-black">
-//               Curated itineraries | Exclusive access | Professional
-//               photography and content creation opportunities.
-//               </p>
-//               {/* <p className="sm:text-2xl md:text-2xl lg:text-2xl font-medium text-black">
-//                 Exclusive access to unique locations and activities that aren't available to regular tourists.
-//               </p>
-//               <p className="sm:text-2xl md:text-2xl lg:text-2xl font-medium text-black">
-//                 Professional photography and content creation opportunities throughout your journey.
-//               </p> */}
-//             </div>
-//           </div>
-//           {/* Right Column: Illustration */}
-//           <div className="flex justify-center md:justify-end">
-//             <div className="relative">
-//               <Image
-//                 src="/section2_illustration3.svg"
-//                 alt="Traveler with backpack and suitcase"
-//                 width={300}
-//                 height={300}
-//                 className="object-contain"
-//               />  
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
-
-
-// pages/Section2.tsx
-'use client'
+import dynamic from 'next/dynamic';
 import Image from "next/image";
-import FadeContent from './FadeContent'; // Import FadeContent
+
+const FadeContent = dynamic(() => import('@/components/FadeContent'), {
+  ssr: false,
+});
 
 export default function Section2() {
   return (
-    <section
-      className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat px-4 sm:px-8 overflow-hidden relative"
-      style={{ backgroundImage: "url('/bg2.png')", backgroundSize: "100% 100%" }} // Replace with your image
-    >
-      <div className="container w-full px-4 sm:px-8 lg:px-20 py-2">
+    <section className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat px-4 sm:px-8 overflow-hidden relative">
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/bg2.png"
+          alt="Background"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+          decoding="async"
+        />
+      </div>
+      
+      <div className="container relative z-10 w-full px-4 sm:px-8 lg:px-20 py-2">
         {/* Row 1: Text on Left, Illustration on Right */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-4 md:gap-x-2 lg:gap-x-16 items-center mb-16 relative mt-16 md:mt-0 lg:mt-0">
-          {/* Left Column: Text */}
-          <FadeContent blur={true} duration={1000} easing="ease-out" initialOpacity={0} slideFrom="left">
+          <FadeContent slideFrom="left">
             <div className="space-y-4 text-left">
-              <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#ffcd13]">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#ffcd13]">
                 Why Travelers Love Us
-              </h3>
-              <div className="space-y-6">
-                <p className="sm:text-2xl md:text-2xl lg:text-2xl font-medium text-black">
-                  Hassle-free trips | Exclusive experiences | Meet your favorite influencers
-                </p>
-              </div>
+              </h2>
+              <p className="sm:text-2xl md:text-2xl lg:text-2xl font-medium text-black">
+                Hassle-free trips | Exclusive experiences | Meet your favorite influencers
+              </p>
             </div>
           </FadeContent>
 
-          {/* Right Column: Illustration */}
-          <FadeContent blur={true} duration={1000} easing="ease-out" initialOpacity={0} slideFrom="right">
+          <FadeContent slideFrom="right">
             <div className="flex justify-center md:justify-end">
-              <div className="relative">
+              <div className="relative w-[300px] h-[300px]">
                 <Image
                   src="/section2_illustration1.svg"
                   alt="Traveler with luggage"
-                  width={300}
-                  height={300}
-                  className="object-contain mt-10 max-h-60 md:max-h-80 lg:max-h-96"
+                  fill
+                  priority
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  decoding="async"
                 />
               </div>
             </div>
           </FadeContent>
         </div>
 
-        {/* Row 2: Illustration on Left, Text on Right */}
+        {/* Row 2: Text on Left (mobile) / Right (desktop), Illustration on Right (mobile) / Left (desktop) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 md:gap-x-2 lg:gap-x-16 items-center mb-16">
-          {/* Left Column: Illustration */}
-          <FadeContent blur={true} duration={1000} easing="ease-out" initialOpacity={0} slideFrom="left">
-            <div className="flex justify-center md:justify-start order-2 md:order-1">
-              <div className="relative">
-                <Image
-                  src="/section2_illustration2.svg"
-                  alt="Excited traveler with luggage"
-                  width={300}
-                  height={300}
-                  className="object-contain max-h-96"
-                />
+          <div className="order-2 md:order-1">
+            <FadeContent slideFrom="left">
+              <div className="flex justify-center md:justify-start">
+                <div className="relative w-[300px] h-[300px]">
+                  <Image
+                    src="/section2_illustration2.svg"
+                    alt="Excited traveler with luggage"
+                    fill
+                    loading="lazy"
+                    className="object-contain"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    decoding="async"
+                  />
+                </div>
               </div>
-            </div>
-          </FadeContent>
+            </FadeContent>
+          </div>
 
-          {/* Right Column: Text */}
-          <FadeContent blur={true} duration={1000} easing="ease-out" initialOpacity={0} slideFrom="right">
-            <div className="space-y-6 text-left order-1 md:order-2">
-              <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#ffcd13]">
-                Travel Beyond Screens!
-              </h3>
-              <div className="space-y-4">
+          <div className="order-1 md:order-2">
+            <FadeContent slideFrom="right">
+              <div className="space-y-6 text-left">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#ffcd13]">
+                  Travel Beyond Screens!
+                </h2>
                 <p className="sm:text-2xl md:text-2xl lg:text-2xl font-medium text-black">
                   Bridging the gap between influencers and you | Once in a lifetime experience | Premium and well-organized | safety and comfort ensured.
                 </p>
               </div>
-            </div>
-          </FadeContent>
+            </FadeContent>
+          </div>
         </div>
 
         {/* Row 3: Text on Left, Illustration on Right */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-1 mb-9 items-center">
-          {/* Left Column: Text */}
-          <FadeContent blur={true} duration={1000} easing="ease-out" initialOpacity={0} slideFrom="left">
+          <FadeContent slideFrom="left">
             <div className="space-y-6 text-left">
-              <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#ffcd13]">
-                What’s in it for Customers?
-              </h3>
-              <div className="space-y-4">
-                <p className="sm:text-2xl md:text-2xl lg:text-2xl font-medium text-black">
-                  Curated itineraries | Exclusive access | Professional photography and content creation opportunities.
-                </p>
-              </div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#ffcd13]">
+                What's in it for Customers?
+              </h2>
+              <p className="sm:text-2xl md:text-2xl lg:text-2xl font-medium text-black">
+                Curated itineraries | Exclusive access | Professional photography and content creation opportunities.
+              </p>
             </div>
           </FadeContent>
 
-          {/* Right Column: Illustration */}
-          <FadeContent blur={true} duration={1000} easing="ease-out" initialOpacity={0} slideFrom="right">
+          <FadeContent slideFrom="right">
             <div className="flex justify-center md:justify-end">
-              <div className="relative">
+              <div className="relative w-[300px] h-[300px]">
                 <Image
                   src="/section2_illustration3.svg"
                   alt="Traveler with backpack and suitcase"
-                  width={300}
-                  height={300}
+                  fill
+                  loading="lazy"
                   className="object-contain"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  decoding="async"
                 />
               </div>
             </div>
