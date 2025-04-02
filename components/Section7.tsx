@@ -1,4 +1,5 @@
 import Image from "next/image"
+import React from 'react';
 import Link from "next/link"
 import { FaLinkedin, FaInstagram } from "react-icons/fa"
 
@@ -75,11 +76,11 @@ export default function Section7() {
                     FAQs
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link href="#" className="hover:text-[#fec90f]">
                     Contact Us
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
