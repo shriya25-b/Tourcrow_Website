@@ -8,6 +8,7 @@ import Section6 from "@/components/Section6"
 import Section7 from "@/components/Section7"
 
 export default function Page() {
+
   return (
     <main className="relative">
       <div className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"></div>
@@ -19,8 +20,8 @@ export default function Page() {
         <Section4 />
       </div>
       <Section5 />
-      <Section6 />
-      <Section7 />
+      <Section6/>
+      <Section7/>
     </main>
   )
 }

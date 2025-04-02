@@ -1,4 +1,5 @@
 import Image from "next/image"
+import React from 'react';
 import Link from "next/link"
 import { FaLinkedin, FaInstagram } from "react-icons/fa"
 
@@ -10,6 +11,7 @@ export default function Section7() {
         <Image
           src="/indiastencil.png"
           alt="India Stencil"
+          priority={false}
           width={1920}
           height={100}
           className="w-full h-[50px] md:h-[100px] object-cover"
@@ -23,6 +25,7 @@ export default function Section7() {
             <Image
               src="/Logo.svg"
               alt="Logo"
+              priority={false}
               width={100}
               height={100}
               className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24"
@@ -45,7 +48,7 @@ export default function Section7() {
                 </li>
                 <li>
                   <Link href="#" className="hover:text-[#fec90f]">
-New & Blog
+                      New & Blog
                   </Link>
                 </li>
               </ul>
@@ -73,11 +76,11 @@ New & Blog
                     FAQs
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link href="#" className="hover:text-[#fec90f]">
                     Contact Us
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
