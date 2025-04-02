@@ -16,7 +16,7 @@ export default function Section2() {
           alt="Background"
           fill
           priority
-          className="object-cover"
+          className="object-cover object-top"
           sizes="100vw"
           decoding="async"
         />
