@@ -20,6 +20,7 @@ export default function Section1() {
             height={120}
             priority
             className="w-full h-auto"
+            unoptimized={true} // Use unoptimized for GIFs to prevent Next.js from optimizing them
           />
         </div>
         

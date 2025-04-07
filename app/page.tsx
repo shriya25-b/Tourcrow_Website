@@ -12,7 +12,7 @@ export default function Page() {
   return (
     <main className="relative">
       <div className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"></div>
-      <Navbar />
+      
       <Section1 />
       <Section2 />
       <div className="shared-bg">
