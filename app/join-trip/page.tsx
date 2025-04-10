@@ -395,7 +395,7 @@ export default function JoinTrip() {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const { data, error } = await supabase.from("trips").select("influencer_category")
+      const { data, error } = await supabase.from("trip_influencers").select("influencer_category")
 
       if (error) {
         console.error("Error fetching categories:", error.message)
@@ -658,7 +658,7 @@ export default function JoinTrip() {
                       <p className="text-sm opacity-80">{trip.influencer_category} Influencer Trip</p>
                     </div>
                     <Link href={`/trip/${trip.id}`}>
-                      <button className="absolute bottom-4 right-4 bg-gradient-to-r from-white/30 to-white/10 text-white px-4 py-2 rounded-full text-sm  shadow-md flex items-center gap-2 hover:scale-105">
+                      <button className="absolute bottom-4 right-4 bg-gradient-to-r from-white/40 to-white/20 text-white px-4 py-2 rounded-full text-sm  shadow-md flex items-center gap-2 hover:scale-105">
                         View Details ➤
                       </button> 
                     </Link>

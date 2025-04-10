@@ -48,7 +48,7 @@ export default function Section7() {
                 </li>
                 <li>
                   <Link href="#" className="hover:text-[#fec90f]">
-                      New & Blog
+                    New & Blog
                   </Link>
                 </li>
               </ul>
@@ -87,14 +87,48 @@ export default function Section7() {
         </nav>
 
         {/* Social Media Icons */}
-        <div className="flex justify-center mt-0 gap-6 ">
+        {/* <div className="flex justify-center mt-0 gap-6 ">
           <Link href="https://www.linkedin.com/company/tourcrowtravel/" target="_blank">
             <FaLinkedin className="text-white hover:text-[#fec90f] text-2xl" />
             </Link>
             <Link href="https://www.instagram.com/tourcrow/" target="_blank">
               <FaInstagram className="text-white hover:text-[#fec90f] text-2xl" />
             </Link>
+        </div> */}
+
+        <div className="flex flex-col md:flex-row justify-center items-center md:gap-20 gap-6 py-6  text-white text-center">
+          {/* Call Us */}
+          <div className="border-r border-white px-6 md:px-10">
+            <p className="text-sm mb-1">Call Us</p>
+            <p className="text-xl font-medium">+91 95827 48945</p>
+          </div>
+
+          {/* Email Us */}
+          <div className="border-r border-white px-6 md:px-10">
+            <p className="text-sm mb-1">Email Us</p>
+            <p className="text-xl font-medium">collaborations.tourcrow@gmail.com</p>
+          </div>
+
+          {/* Follow Us */}
+          <div className="px-6 md:px-10">
+            <p className="text-sm mb-1">Follow Us</p>
+            <div className="flex justify-center gap-4 mt-1">
+              <Link href="https://www.linkedin.com/company/tourcrowtravel/" target="_blank">
+                <FaLinkedin className="text-white hover:text-[#fec90f] text-2xl" />
+              </Link>
+              <Link href="https://www.instagram.com/tourcrow/" target="_blank">
+                <FaInstagram className="text-white hover:text-[#fec90f] text-2xl" />
+              </Link>
+            </div>
+          </div>
         </div>
+
+          {/* copyright */}
+        {/* <p className="text-sm text-gray-400 text-center mt-6">
+          © {new Date().getFullYear()} TourCrow Travel. All rights reserved.
+        </p> */}
+
+
       </div>
     </main>
   )
