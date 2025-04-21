@@ -18,6 +18,7 @@
 //     selectedDestinations: string[];
 //     category: string | null;
 //   }
+
 export interface Trip {
   id: number
   influencer_category: string
@@ -65,3 +66,4 @@ export interface FilterState {
   selectedDestinations: string[]
   category: string | null
 }
+  

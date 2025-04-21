@@ -8,6 +8,7 @@ import { supabase } from "@/utils/supabase/client"
 import { formatDate, calculateDuration } from "@/utils/format-date"
 import type { Trip, TripActivity, TripInclusion, TripExclusion } from "@/types/trips"
 import { use } from "react"
+import BookingForm from "./booking"
 
 export default function TripDetail({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params)
@@ -18,6 +19,7 @@ export default function TripDetail({ params }: { params: Promise<{ id: string }>
     const [exclusions, setExclusions] = useState<TripExclusion[]>([])
     const [loading, setLoading] = useState(true)
     const [activeTab, setActiveTab] = useState("overview")
+    const [showBookingForm, setShowBookingForm] = useState(false)
 
     useEffect(() => {
         const fetchTripDetails = async () => {
@@ -42,11 +44,13 @@ export default function TripDetail({ params }: { params: Promise<{ id: string }>
 
                 if (tripInfluencerError) throw tripInfluencerError
 
+                const tripId = tripInfluencerData.trip_id;
+
                 // Fetch trip activities
                 const { data: activitiesData, error: activitiesError } = await supabase
                     .from("trip_activities")
                     .select("*")
-                    .eq("trip_id", id)
+                    .eq("trip_id", tripId)
 
                 if (activitiesError) throw activitiesError
 
@@ -59,7 +63,7 @@ export default function TripDetail({ params }: { params: Promise<{ id: string }>
                                 title
                                 )
                             `)
-                    .eq("trip_id", id);
+                    .eq("trip_id", tripId);
 
                 if (inclusionsError) throw inclusionsError
 
@@ -124,6 +128,11 @@ export default function TripDetail({ params }: { params: Promise<{ id: string }>
 
             </div>
         )
+    }
+
+    //booking 
+    if (showBookingForm) {
+        return <BookingForm trip={trip} onBack={() => setShowBookingForm(false)} />
     }
 
     return (
@@ -329,7 +338,10 @@ export default function TripDetail({ params }: { params: Promise<{ id: string }>
                                 ₹{trip.price} <span className="text-sm font-normal text-gray-500">per person</span>
                             </p>
                         </div>
-                        <button className="mt-4 md:mt-0 bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-full transition-colors">
+                        <button
+                            className="mt-4 md:mt-0 bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-full transition-colors"
+                            onClick={() => setShowBookingForm(true)}
+                        >
                             Book Now
                         </button>
                     </div>
