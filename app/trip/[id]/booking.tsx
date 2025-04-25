@@ -4,7 +4,6 @@ import type React from "react"
 
 import { useState } from "react"
 import { ArrowLeft, Info } from "lucide-react"
-import Link from "next/link"
 import { useRouter } from "next/navigation"
 import type { Trip } from "@/types/trips"
 
@@ -21,6 +20,8 @@ type TravelerInfo = {
   phone: string
   instagramHandle: string
   country: string
+  ageError?: string
+  phoneError?: string
 }
 
 type BookingFormProps = {
@@ -48,32 +49,46 @@ export default function BookingForm({ trip, onBack }: BookingFormProps) {
   ])
 
   const [keepMeLooped, setKeepMeLooped] = useState(true)
+  const [totalPrice, setTotalPrice] = useState(trip.price || 0)
 
   const handleAddTraveler = () => {
-    setTravelers([
-      ...travelers,
-      {
-        firstName: "",
-        lastName: "",
-        email: "",
-        gender: "",
-        dateOfBirth: {
-          month: "",
-          day: "",
-          year: "",
+    setTravelers((prevTravelers) => {
+      const newTravelers = [
+        ...prevTravelers,
+        {
+          firstName: "",
+          lastName: "",
+          email: "",
+          gender: "",
+          dateOfBirth: {
+            month: "",
+            day: "",
+            year: "",
+          },
+          phone: "",
+          instagramHandle: "",
+          country: "India",
         },
-        phone: "",
-        instagramHandle: "",
-        country: "India",
-      },
-    ])
+      ]
+
+      // Update total price after adding a traveler
+      setTotalPrice((prevPrice) => prevPrice + (trip.price || 0))
+
+      return newTravelers
+    })
   }
 
   const handleRemoveTraveler = (index: number) => {
     if (travelers.length > 1) {
-      const updatedTravelers = [...travelers]
-      updatedTravelers.splice(index, 1)
-      setTravelers(updatedTravelers)
+      setTravelers((prevTravelers) => {
+        const updatedTravelers = [...prevTravelers]
+        updatedTravelers.splice(index, 1)
+
+        // Update total price after removing a traveler
+        setTotalPrice((prevPrice) => prevPrice - (trip.price || 0))
+
+        return updatedTravelers
+      })
     }
   }
 
@@ -82,12 +97,21 @@ export default function BookingForm({ trip, onBack }: BookingFormProps) {
 
     if (field.includes(".")) {
       const [parent, child] = field.split(".")
+
       updatedTravelers[index] = {
         ...updatedTravelers[index],
         [parent]: {
           ...(updatedTravelers[index][parent as keyof TravelerInfo] as object),
           [child]: value,
         },
+      }
+
+      // ✅ Add age validation logic for traveler 1
+      if (parent === "dateOfBirth" && child === "year" && index === 0) {
+        const selectedYear = parseInt(value)
+        const currentYear = new Date().getFullYear()
+        const age = currentYear - selectedYear
+        updatedTravelers[0].ageError = age < 18 ? "Age should be greater than 18" : ""
       }
     } else {
       updatedTravelers[index] = {
@@ -96,20 +120,31 @@ export default function BookingForm({ trip, onBack }: BookingFormProps) {
       }
     }
 
+    // ✅ Phone number validation
+    if (field === "phone") {
+      const phonePattern = /^\d{10}$/;
+      const isValidPhone = phonePattern.test(value);
+      updatedTravelers[index].phoneError = isValidPhone ? "" : "Enter a valid 10-digit phone number";
+    }
+
+
     setTravelers(updatedTravelers)
   }
 
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Booking submitted:", { travelers, keepMeLooped })
+    console.log("Booking submitted:", { travelers, keepMeLooped, totalPrice })
     // Here you would typically send the data to your backend
     router.push(`/trip/${trip.id}/payment`)
   }
 
+  // Calculate deposit amount (25% of total)
+  const depositAmount = totalPrice * 0.25
+
+
   return (
     <div className="min-h-screen bg-[#fffbe5]">
-   
-
       {/* Booking Process Navigation */}
       <div className="container mx-auto px-4 py-6">
         <div className="flex items-center mb-6">
@@ -282,6 +317,10 @@ export default function BookingForm({ trip, onBack }: BookingFormProps) {
                           )
                         })}
                       </select>
+                      {traveler.ageError && (
+                        <p className="text-red-600 text-sm mt-1">{traveler.ageError}</p>
+                      )}
+
                     </div>
                   </div>
 
@@ -298,6 +337,9 @@ export default function BookingForm({ trip, onBack }: BookingFormProps) {
                         className="w-full p-2 border border-gray-300 rounded"
                         required
                       />
+                      {traveler.phoneError && (
+                        <div className="text-sm text-red-500 mt-1">{traveler.phoneError}</div>
+                      )}
                     </div>
                     <div>
                       <label htmlFor={`instagram-${index}`} className="block text-sm font-medium text-gray-700 mb-1">
@@ -373,22 +415,32 @@ export default function BookingForm({ trip, onBack }: BookingFormProps) {
           <div className="w-full lg:w-1/3">
             <div className="bg-white rounded-lg shadow-md p-6 sticky top-6">
               <h3 className="text-lg font-semibold mb-4">Trip Price</h3>
-              <div className="flex justify-between mb-2">
-                <span>Trip Price</span>
-                <span>₹{trip.price?.toLocaleString()}</span>
+
+              {/* Price breakdown per traveler */}
+              <div className="space-y-2 mb-4">
+                {travelers.map((_, index) => (
+                  <div key={index} className="flex justify-between">
+                    <span>Traveler {index + 1}</span>
+                    <span>₹{(trip.price || 0).toLocaleString()}</span>
+                  </div>
+                ))}
               </div>
+
               <div className="border-t border-gray-200 my-4"></div>
+
               <div className="flex justify-between font-semibold">
                 <span>Total</span>
-                <span>₹{trip.price?.toLocaleString()}</span>
+                <span>₹{totalPrice.toLocaleString()}</span>
               </div>
+
               <div className="flex justify-between items-center mt-4 mb-2">
                 <span className="font-semibold">Due Now</span>
                 <div className="flex items-center">
-                  <span className="font-semibold">₹{(trip.price * 0.25).toLocaleString()}</span>
+                  <span className="font-semibold">₹{depositAmount.toLocaleString()}</span>
                   <Info className="w-4 h-4 ml-1 text-gray-400" />
                 </div>
               </div>
+
               <div className="bg-blue-50 p-3 rounded-lg flex items-start mt-4">
                 <div className="text-blue-500 mr-2">
                   <Info className="w-5 h-5" />

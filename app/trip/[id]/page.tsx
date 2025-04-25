@@ -143,12 +143,12 @@ export default function TripDetail({ params }: { params: Promise<{ id: string }>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
 
                 <div className="absolute bottom-0 left-0 w-full p-6 md:p-10 text-white">
-                    <Link
-                        href="/join-trip"
-                        className="inline-flex items-center text-white bg-black/30 px-4 py-2 rounded-full backdrop-blur-sm mb-4 hover:bg-black/50 transition-colors"
-                    >
-                        <ArrowLeft className="w-4 h-4 mr-2" /> Back to trips
+                    <Link href="/join-trip" className="inline-block">
+                        <button className="bg-gradient-to-r from-white/40 to-white/20 text-white px-4 py-2 mb-3 rounded-full text-sm shadow-md flex items-center gap-2 hover:scale-105 transition-transform duration-200">
+                            <ArrowLeft className="w-4 h-4" /> Back to trips
+                        </button>
                     </Link>
+
                     <h1 className="text-3xl md:text-5xl font-bold mb-2">{trip.destination}</h1>
                     <div className="flex flex-wrap gap-4 mb-4">
                         <div className="flex items-center bg-black/30 px-3 py-1 rounded-full backdrop-blur-sm">
@@ -159,7 +159,7 @@ export default function TripDetail({ params }: { params: Promise<{ id: string }>
                             </span>
                         </div>
                         <div className="flex items-center bg-black/30 px-3 py-1 rounded-full backdrop-blur-sm">
-                            <span className="font-bold">₹{trip.price}</span>
+                            <span className="font-bold bg-gradient-to-r from-white/40 to-white/20 text-white px-4 py-2 rounded-full text-sm shadow-md flex items-center gap-2 hover:scale-105 transition-transform duration-200">₹{trip.price}</span>
                         </div>
                     </div>
                     <p className="text-lg">
