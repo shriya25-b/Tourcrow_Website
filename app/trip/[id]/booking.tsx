@@ -3,8 +3,10 @@
 import type React from "react"
 
 import { useState } from "react"
-import { ArrowLeft, Info } from "lucide-react"
+import { ArrowLeft, Info, Loader2 } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { supabase } from "@/utils/supabase/client"
+import { useToast } from "@/components/ui/use-toast"
 import type { Trip } from "@/types/trips"
 
 type TravelerInfo = {
@@ -31,6 +33,7 @@ type BookingFormProps = {
 
 export default function BookingForm({ trip, onBack }: BookingFormProps) {
   const router = useRouter()
+  const { toast } = useToast()
   const [travelers, setTravelers] = useState<TravelerInfo[]>([
     {
       firstName: "",
@@ -47,7 +50,7 @@ export default function BookingForm({ trip, onBack }: BookingFormProps) {
       country: "India",
     },
   ])
-
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [keepMeLooped, setKeepMeLooped] = useState(true)
   const [totalPrice, setTotalPrice] = useState(trip.price || 0)
 
@@ -108,7 +111,7 @@ export default function BookingForm({ trip, onBack }: BookingFormProps) {
 
       // ✅ Add age validation logic for traveler 1
       if (parent === "dateOfBirth" && child === "year" && index === 0) {
-        const selectedYear = parseInt(value)
+        const selectedYear = Number.parseInt(value)
         const currentYear = new Date().getFullYear()
         const age = currentYear - selectedYear
         updatedTravelers[0].ageError = age < 18 ? "Age should be greater than 18" : ""
@@ -122,26 +125,128 @@ export default function BookingForm({ trip, onBack }: BookingFormProps) {
 
     // ✅ Phone number validation
     if (field === "phone") {
-      const phonePattern = /^\d{10}$/;
-      const isValidPhone = phonePattern.test(value);
-      updatedTravelers[index].phoneError = isValidPhone ? "" : "Enter a valid 10-digit phone number";
+      const phonePattern = /^\d{10}$/
+      const isValidPhone = phonePattern.test(value)
+      updatedTravelers[index].phoneError = isValidPhone ? "" : "Enter a valid 10-digit phone number"
     }
-
 
     setTravelers(updatedTravelers)
   }
 
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log("Booking submitted:", { travelers, keepMeLooped, totalPrice })
-    // Here you would typically send the data to your backend
-    router.push(`/trip/${trip.id}/payment`)
+  const validateForm = () => {
+    // Check for validation errors
+    for (const traveler of travelers) {
+      if (traveler.ageError || traveler.phoneError) {
+        return false
+      }
+    }
+    return true
   }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+  
+    // Validate form before submission
+    if (!validateForm()) {
+      toast({
+        variant: "destructive",
+        title: "Validation Error",
+        description: "Please fix the errors in the form before continuing.",
+      })
+      return
+    }
+  
+    setIsSubmitting(true)
+  
+    try {
+      // First, verify the trip exists by joining trips and trip_influencer tables
+      const { data: tripData, error: tripFetchError } = await supabase
+        .from("trips")
+        .select(`
+          *,
+          trip_influencer!inner(*)
+        `)
+        .eq("id", trip.id)
+        .single()
+  
+      if (tripFetchError || !tripData) {
+        throw new Error("Could not verify trip details. The trip may no longer be available.")
+      }
+  
+      // Create the booking with the verified trip_id
+      const { data: bookingData, error: bookingError } = await supabase
+        .from("bookings")
+        .insert({
+          trip_id: tripData.id,
+          total_price: totalPrice,
+          booking_date: new Date().toISOString(),
+          status: "pending",
+          contact_email: travelers[0].email,
+          contact_number: travelers[0].phone,
+          // Add any other fields that might be needed from trip_influencer
+          influencer_id: tripData.trip_influencer?.influencer_id || null,
+        })
+        .select()
+  
+      console.log("Creating booking with:", {
+        trip_id: tripData.id,
+        total_price: totalPrice,
+        contact_email: travelers[0].email,
+        contact_number: travelers[0].phone,
+      })
+  
+      if (bookingError) throw bookingError
+  
+      // Get the booking ID from the response
+      const bookingId = bookingData[0].id
+  
+      // Create traveler records
+      const travelerPromises = travelers.map(async (traveler) => {
+        // Format date of birth
+        const dob = `${traveler.dateOfBirth.year}-${traveler.dateOfBirth.month}-${traveler.dateOfBirth.day}`
+  
+        const { error: travelerError } = await supabase.from("travelers").insert({
+          booking_id: bookingId,
+          first_name: traveler.firstName,
+          last_name: traveler.lastName,
+          email: traveler.email,
+          gender: traveler.gender,
+          date_of_birth: dob,
+          phone: traveler.phone,
+          instagram_handle: traveler.instagramHandle || null,
+          country: traveler.country,
+          is_subscribed: traveler.email === travelers[0].email ? keepMeLooped : false,
+        })
+  
+        if (travelerError) throw travelerError
+      })
+  
+      // Wait for all traveler records to be created
+      await Promise.all(travelerPromises)
+  
+      // Success! Show toast and redirect
+      toast({
+        title: "Booking Created",
+        description: "Your booking has been successfully created!",
+      })
+  
+      // Redirect to payment page
+      router.push(`/trip/${tripData.id}/payment?booking=${bookingId}`)
+    } catch (error: any) {
+      console.error("Error creating booking:", error)
+      toast({
+        variant: "destructive",
+        title: "Booking Failed",
+        description: error.message || "There was a problem creating your booking. Please try again.",
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+  
 
   // Calculate deposit amount (25% of total)
   const depositAmount = totalPrice * 0.25
-
 
   return (
     <div className="min-h-screen bg-[#fffbe5]">
@@ -317,11 +422,8 @@ export default function BookingForm({ trip, onBack }: BookingFormProps) {
                           )
                         })}
                       </select>
-                      {traveler.ageError && (
-                        <p className="text-red-600 text-sm mt-1">{traveler.ageError}</p>
-                      )}
-
                     </div>
+                    {traveler.ageError && <p className="text-red-600 text-sm mt-1">{traveler.ageError}</p>}
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -337,9 +439,7 @@ export default function BookingForm({ trip, onBack }: BookingFormProps) {
                         className="w-full p-2 border border-gray-300 rounded"
                         required
                       />
-                      {traveler.phoneError && (
-                        <div className="text-sm text-red-500 mt-1">{traveler.phoneError}</div>
-                      )}
+                      {traveler.phoneError && <div className="text-sm text-red-500 mt-1">{traveler.phoneError}</div>}
                     </div>
                     <div>
                       <label htmlFor={`instagram-${index}`} className="block text-sm font-medium text-gray-700 mb-1">
@@ -403,9 +503,17 @@ export default function BookingForm({ trip, onBack }: BookingFormProps) {
               <div className="flex justify-end">
                 <button
                   type="submit"
-                  className="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-8 rounded-full transition-colors"
+                  disabled={isSubmitting}
+                  className="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-8 rounded-full transition-colors disabled:bg-red-300"
                 >
-                  Continue
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin inline" />
+                      Processing...
+                    </>
+                  ) : (
+                    "Continue"
+                  )}
                 </button>
               </div>
             </form>
